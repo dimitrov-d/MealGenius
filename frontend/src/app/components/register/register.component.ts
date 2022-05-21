@@ -52,6 +52,7 @@ export class RegisterComponent implements OnInit {
     for (let i = 0; i < this.diets.length; i++) {
       this.diets[i].selected = i === idx;
     }
+    this.slides.slideNext();
   }
 
   selectAllergen(idx) {
