@@ -33,14 +33,14 @@
         <ion-row >
           <ion-col *ngFor="let foodType of diets; let idx=index">
             <ion-card color="light" class="middle-align" [ngStyle]="{'border': foodType.selected ? '2px solid #387FFF' : 'none'}"
-            (click)="selectCard(idx)">
+            (click)="selectDiet(idx)">
             <ion-card-content style="padding-top: 5px;">
               <ion-avatar slot="start" style="display: block; margin: auto;">
                 <img
-                  style="margin-top: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
+                  style="margin-bottom: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
                   [src]="foodType.img_src" />
               </ion-avatar>
-              <ion-label style="">{{foodType.name}}</ion-label>
+              <ion-label class="d-block pt-10">{{foodType.name}}</ion-label>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -49,12 +49,31 @@
       </ion-grid>
     </ion-slide>
 
+    <!-- allergens -->
+    <ion-slide>
+      <ion-grid>
+        <h1> Please select foods you are allergic/intollerant to </h1>
+        <ion-row *ngFor="let allergen of allergens; let idx=index">
+          <ion-card color="light" [ngStyle]="{'border': allergen.selected ? '2px solid #387FFF' : 'none'}"
+            (click)="selectAllergen(idx)">
+            <ion-card-content style="width:250px; height:70px;padding-top: 5px;">
+              <ion-avatar slot="start" style="display: inline">
+                <img
+                  style="margin-left: -50px; margin-top: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
+                  [src]="allergen.img_src" />
+              </ion-avatar>
+              <ion-label style="margin-left: 30px">{{allergen.name}}</ion-label>
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
     <ion-slide>
       <!-- <img src="./slide-4.png" /> -->
-      <h2>Ready to Play?</h2>
-      <ion-button fill="clear" routerLink="/home">Continue <a routerLink="/home">
-          <ion-icon slot="end" name="arrow-forward"></ion-icon>
-        </a>
+      <h2>Welcome</h2>
+      <ion-button fill="clear" [routerLink]='["/tabs/plan"]'>Continue
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
       </ion-button>
     </ion-slide>
   </ion-slides>
