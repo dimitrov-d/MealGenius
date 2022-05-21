@@ -16,9 +16,9 @@ router.post('/register', async (req, res) => {
     const check_user = await collection.findOne({ email, password });
     if(check_user == null) {
         await collection.insertOne({ name , password, email, diets, allergens });
-        res.status(200).send({'error':0});
+        res.status(200).send({'error':"Registration successfull"});
     } else {
-        res.status(400).send({'error':1});
+        res.status(400).send({'error':"User already exist",});
     }
     
 });
@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
     const collection = db.collection('users');
     const user = await collection.findOne({ password, email });
     if(user == null) {
-        res.status(400).send({'error':1});
+        res.status(400).send({'error':"Wrong email or password"});
     }
     res.status(200).send({'error':0});
 });
