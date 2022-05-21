@@ -2,9 +2,10 @@ const express = require('express')
 const app = express();
 const bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.listen(3000, () => console.log(`Hackathon app listening on port 3000`));
-
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 const config = require('dotenv').config().parsed;
 const { MongoClient } = require('mongodb');
 
@@ -19,3 +20,5 @@ app.post('/addNew', async (req, res) => {
 
     res.send('Success!')
 });
+
+app.listen(3000, () => console.log(`Hackathon app listening on port 3000`));
