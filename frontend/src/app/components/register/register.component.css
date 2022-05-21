@@ -15,6 +15,14 @@
     padding-bottom: 5px;
 }
 
+.d-block {
+    display: block;
+}
+
+.pt-10 {
+    padding-top: 10px;
+}
+
 .middle-align {
     width: 150px;
     height: 100px;
