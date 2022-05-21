@@ -1,0 +1,39 @@
+<app-header title="Grocery App" [homeButton]="false"></app-header>
+<ion-content>
+  <ion-grid>
+    <h1> Your preferred diet type </h1>
+    <ion-row>
+      <ion-col *ngFor="let diet of diets; let idx=index">
+        <ion-card color="light" class="middle-align"
+          [ngStyle]="{'border': diet.selected ? '2px solid #387FFF' : 'none'}" (click)="selectDiet(idx)">
+          <ion-card-content style="padding-top: 5px;">
+            <ion-avatar slot="start" style="display: block; margin: auto;">
+              <img
+                style="margin-bottom: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
+                [src]="diet.img_src" />
+            </ion-avatar>
+            <ion-label class="d-block pt-10">{{diet.name}}</ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <h1> Please select foods you are allergic/intollerant to </h1>
+    <ion-row>
+      <ion-col *ngFor="let allergen of allergens; let idx=index">
+        <ion-card color="light" class="middle-align"
+          [ngStyle]="{'border': allergen.selected ? '2px solid #387FFF' : 'none'}" (click)="selectAllergen(idx)">
+          <ion-card-content style="padding-top: 5px;">
+            <ion-avatar slot="start" style="display: block; margin: auto;">
+              <img
+                style="margin-bottom: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
+                [src]="allergen.img_src" />
+            </ion-avatar>
+            <ion-label class="d-block pt-10">{{allergen.name}}</ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

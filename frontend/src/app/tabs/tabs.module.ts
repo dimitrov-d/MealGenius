@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TabsPage } from './tabs.component';
 import { PlanComponent } from '@shared/components/plan/plan.component';
+import { PreferencesComponent } from '../components/preferences/preferences.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: 'plan',
         component: PlanComponent
+      },
+      {
+        path: 'preferences',
+        component: PreferencesComponent
       },
       // {
       //   path: 'tab2',

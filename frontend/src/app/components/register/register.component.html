@@ -30,27 +30,27 @@
     <ion-slide>
       <ion-grid>
         <h1> Please select your preferred diet type </h1>
-        <ion-row >
+        <ion-row>
           <ion-col *ngFor="let foodType of diets; let idx=index">
-            <ion-card color="light" class="middle-align" [ngStyle]="{'border': foodType.selected ? '2px solid #387FFF' : 'none'}"
-            (click)="selectDiet(idx)">
-            <ion-card-content style="padding-top: 5px;">
-              <ion-avatar slot="start" style="display: block; margin: auto;">
-                <img
-                  style="margin-bottom: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
-                  [src]="foodType.img_src" />
-              </ion-avatar>
-              <ion-label class="d-block pt-10">{{foodType.name}}</ion-label>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-          
+            <ion-card color="light" class="middle-align"
+              [ngStyle]="{'border': foodType.selected ? '2px solid #387FFF' : 'none'}" (click)="selectDiet(idx)">
+              <ion-card-content style="padding-top: 5px;">
+                <ion-avatar slot="start" style="display: block; margin: auto;">
+                  <img
+                    style="margin-bottom: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
+                    [src]="foodType.img_src" />
+                </ion-avatar>
+                <ion-label class="d-block pt-10">{{foodType.name}}</ion-label>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+
         </ion-row>
-        
+
         <ion-button class="pt-10" fill="clear" (click)="slides.slideNext()">Continue
           <ion-icon slot="end" name="arrow-forward"></ion-icon>
         </ion-button>
-      
+
       </ion-grid>
     </ion-slide>
 
@@ -60,22 +60,23 @@
         <h1> Please select foods you are allergic/intollerant to </h1>
         <ion-row>
           <ion-col *ngFor="let allergen of allergens; let idx=index">
-            <ion-card color="light" class="middle-align" [ngStyle]="{'border': allergen.selected ? '2px solid #387FFF' : 'none'}"
-            (click)="selectAllergen(idx)">
-            <ion-card-content style="padding-top: 5px;">
-              <ion-avatar slot="start" style="display: block; margin: auto;">
-                <img
-                  style="margin-bottom: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
-                  [src]="allergen.img_src" />
-              </ion-avatar>
-              <ion-label class="d-block pt-10">{{allergen.name}}</ion-label>
-            </ion-card-content>
-          </ion-card>
+            <ion-card color="light" class="middle-align"
+              [ngStyle]="{'border': allergen.selected ? '2px solid #387FFF' : 'none'}" (click)="selectAllergen(idx)">
+              <ion-card-content style="padding-top: 5px;">
+                <ion-avatar slot="start" style="display: block; margin: auto;">
+                  <img
+                    style="margin-bottom: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
+                    [src]="allergen.img_src" />
+                </ion-avatar>
+                <ion-label class="d-block pt-10">{{allergen.name}}</ion-label>
+              </ion-card-content>
+            </ion-card>
           </ion-col>
-          
+
         </ion-row>
-        
-        <ion-button class="pt-10" fill="clear" (click)="slides.slidePrev()"><ion-icon slot="start" name="arrow-back"></ion-icon>
+
+        <ion-button class="pt-10" fill="clear" (click)="slides.slidePrev()">
+          <ion-icon slot="start" name="arrow-back"></ion-icon>
           Go Back
         </ion-button>
         <ion-button class="pt-10" fill="clear" (click)="slides.slideNext()">Continue
@@ -86,18 +87,23 @@
 
     <ion-slide>
       <!-- <img src="./slide-4.png" /> -->
-            <ion-grid>
-              <ion-row><ion-col><h2 class="d-block">Welcome</h2></ion-col></ion-row>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h2 class="d-block">Welcome</h2>
+          </ion-col>
+        </ion-row>
 
-      <ion-row class="jc">
-      <ion-button fill="clear" (click)="slides.slidePrev()"><ion-icon slot="start" name="arrow-back"></ion-icon>
-        Go Back
-      </ion-button>
-      <ion-button fill="clear" [routerLink]='["/tabs/plan"]'>Continue
-        <ion-icon slot="end" name="arrow-forward"></ion-icon>
-      </ion-button>
-    </ion-row>
-  </ion-grid>
+        <ion-row class="jc">
+          <ion-button fill="clear" (click)="slides.slidePrev()">
+            <ion-icon slot="start" name="arrow-back"></ion-icon>
+            Go Back
+          </ion-button>
+          <ion-button fill="clear" [routerLink]='["/tabs/plan"]'>Continue
+            <ion-icon slot="end" name="arrow-forward"></ion-icon>
+          </ion-button>
+        </ion-row>
+      </ion-grid>
     </ion-slide>
   </ion-slides>
 </ion-content>

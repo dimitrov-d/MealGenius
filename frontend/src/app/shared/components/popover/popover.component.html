@@ -1,5 +1,9 @@
 <ion-content scrollY="true">
-  <div style="padding: 20px; font-size: 2em" >
-    {{data}}
-  </div>
+  <ion-list>
+    <ion-list-header>Ingredients</ion-list-header>
+    <ion-item *ngFor="let entry of [1,2,3]">
+      <ion-label>test</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ErrorHandlerService } from '@services/error-handler.service';
 import { NotificationService } from '@services/notifications.service';
+import { PreferencesComponent } from './components/preferences/preferences.component';
 
 const routes: Routes = [
   {
@@ -51,7 +52,7 @@ const routes: Routes = [
     HttpClientModule,
     IonicStorageModule.forRoot(),
   ],
-  declarations: [AppComponent, LoginComponent, RegisterComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, PreferencesComponent],
   entryComponents: [],
   providers: [
     StatusBar,
