@@ -1,0 +1,130 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/* NGX Datatable CSS */
+@import '~assets/styles/ngx-datatable/_index.css';
+@import '~assets/styles/ngx-datatable/_dark.css';
+@import '~assets/styles/ngx-datatable/_material.css';
+@import '~assets/styles/ngx-datatable/_bootstrap.css';
+@import '~assets/styles/ngx-datatable/_icons.css';
+
+.alert-head {
+    h2 {
+        font-size: 2.3em !important;
+    }
+}
+
+.alert-message {
+    font-size: 2em !important;
+    color: black !important;
+}
+
+.ion-alert-popup .alert-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 300px !important;
+    max-width: 600px !important;
+    width: 100%;
+
+    div.alert-button-group {
+        button {
+            font-size: 2em;
+        }
+    }
+
+    div.alert-button-group {
+        justify-content: none;
+    }
+}
+
+.selectable-modal .modal-wrapper {
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    display: block;
+
+    ion-item {
+        font-size: 1.5em !important;
+        margin-top: 20px;
+        margin-bottom: 20px
+    }
+
+    ion-button.md {
+        font-size: 1.2em;
+    }
+
+    ion-toolbar {
+        ion-title {
+            font-size: 2em;
+            text-align: center;
+            margin-left: -5em
+        }
+
+        ion-searchbar {
+            padding: 10px;
+
+            div {
+                font-size: 2em;
+
+                input {
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+
+}
+
+.modal-class .modal-wrapper {
+    height: 80%;
+    width: 80%;
+    position: absolute;
+    display: block;
+}
+
+.alert-class .alert-wrapper {
+    width: 100%;
+
+    div.alert-button-group {
+        button {
+            font-size: 2em;
+        }
+    }
+
+    div.alert-button-group {
+        justify-content: none;
+    }
+
+    button.alert-button-role-cancel {
+        color: rgb(189, 68, 68);
+        padding-right: 40px;
+    }
+}
+
+.popover-content {
+    width: 60% !important;
+}

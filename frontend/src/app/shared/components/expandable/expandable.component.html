@@ -1,0 +1,22 @@
+<ion-card>
+
+  <ion-card-header class="card-header" (click)="expanded = !expanded">
+    <ion-card-title style="margin-left: 20px">
+      <ion-grid>
+        <ion-row>
+          <ion-col style="font-size: 1.4em;" class="margin" size="11">{{cardTitle}}</ion-col>
+          <ion-col class="margin-2" size="1">
+            <ion-icon [name]="expanded ? 'caret-up' : 'caret-down'" style="font-size: 1.2em"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content *ngIf="expanded">
+    <div class='expand-wrapper' [class.collapsed]="!expanded">
+      <ng-content></ng-content>
+    </div>
+  </ion-card-content>
+
+</ion-card>

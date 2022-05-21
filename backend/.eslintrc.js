@@ -14,26 +14,14 @@ Happy linting! 💖
 */
 module.exports = {
     'env': {
-        'browser': true,
-        'es6': true,
-        'node': true
-    },
-    'overrides': [
-        {
-            'files': ['*.ts'],
-            'parserOptions': {
-                'project': ['./tsconfig.json'],
-                'tsconfigRootDir': __dirname,
-                'sourceType': 'module',
-            },
-        }
-    ],
-    'parser': '@typescript-eslint/parser',
-    'plugins': [
-        'eslint-plugin-import',
-        'eslint-plugin-jsdoc',
-        '@typescript-eslint',
-    ],
+		'browser': true,
+		'commonjs': true,
+		'es2021': true
+	},
+    'extends': 'eslint:recommended',
+	'parserOptions': {
+		'ecmaVersion': 'latest'
+	},
     'rules': {
         'arrow-body-style': 'off',
         'constructor-super': 'error',
@@ -44,11 +32,9 @@ module.exports = {
             'error',
             'smart'
         ],
-        'guard-for-in': 'error',
+        'guard-for-in': 'off',
         'id-denylist': 'off',
         'id-match': 'off',
-        'import/no-deprecated': 'warn',
-        'jsdoc/no-types': 'error',
         'max-len': [
             'off',
             {
@@ -63,8 +49,8 @@ module.exports = {
                 'allow': [
                     'log',
                     'warn',
-                    'dir',
                     'info',
+                    'dir',
                     'timeLog',
                     'assert',
                     'clear',
@@ -84,6 +70,7 @@ module.exports = {
                 ]
             }
         ],
+        'no-inner-declarations': 'off',
         'no-debugger': 'error',
         'no-empty': 'off',
         'no-empty-function': 'off',
@@ -96,7 +83,8 @@ module.exports = {
         ],
         'no-shadow': 'off',
         'no-throw-literal': 'error',
-        'no-trailing-spaces': 'error',
+        // 'no-trailing-spaces': 'error',
+        'no-undef': 'off',
         'no-undef-init': 'error',
         'no-underscore-dangle': 'off',
         'no-unused-expressions': 'error',

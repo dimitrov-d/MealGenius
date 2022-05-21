@@ -1,0 +1,19 @@
+.item {
+    border-radius: 5px !important;
+    ion-button {
+        font-size: 1.3em;
+    }
+}
+
+.item:first-of-type {
+    margin-right:30px
+}
+
+.item:last-of-type {
+    margin-right: 5px
+}
+
+.badge {
+    font-size: 1.2em;
+    margin-right: 40px;
+}
