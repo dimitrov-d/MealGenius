@@ -15,7 +15,7 @@
     </ion-slide> -->
 
     <!-- login -->
-    <!-- <ion-slide>
+    <ion-slide>
       <form (ngSubmit)="login()" [formGroup]="credentials" style="margin-top: 30px;">
         <div class="input-group">
           <ion-item>
@@ -35,19 +35,19 @@
         </div>
 
         <ion-button type="submit" expand="block" [disabled]="password.errors || email.errors">Log in</ion-button>
-        <ion-button type="button" expand="block" color="dark" fill="clear">Not yet a member? Sign up!
+        <ion-button type="button" expand="block" color="dark" fill="clear" (click)="signUp()">Not yet a member? Sign up!
         </ion-button>
 
-        <ion-button type="button" expand="block" color="tertiary">
+        <ion-button type="button" expand="block" color="tertiary" style="margin-top: 40px">
           <ion-icon name="logo-google" slot="start"></ion-icon>
           Sign in with Google
         </ion-button>
-        <ion-button type="button" expand="block" color="tertiary" style="margin-top: 10px;">
+        <ion-button type="button" expand="block" color="tertiary" style="margin-top: 20px;">
           <ion-icon name="logo-apple" slot="start"></ion-icon>
           Sign in with Apple
         </ion-button>
       </form>
-    </ion-slide> -->
+    </ion-slide>
 
     <!-- food types -->
     <ion-slide>

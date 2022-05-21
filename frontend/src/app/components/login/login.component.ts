@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonSlides, LoadingController } from '@ionic/angular';
+import { IonSlides, LoadingController, ToastController } from '@ionic/angular';
+import { ErrorHandlerService } from '@services/error-handler.service';
+import { NotificationService } from '@services/notifications.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +14,8 @@ import { IonSlides, LoadingController } from '@ionic/angular';
 })
 
 export class LoginComponent {
-  public userId: string = null;
-  platforms: string[];
   credentials: FormGroup;
-  @ViewChild('slides', { static: false }) slides: IonSlides;
+  @ViewChild(IonSlides) slides: IonSlides;
   foodTypes = [
     {
       name: 'Carnivore',
@@ -36,27 +37,34 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private loadingController: LoadingController
-  ) { }
+    private http: HttpClient,
+    private errorHandler: ErrorHandlerService,
+    private notifications: NotificationService,
+    private toastController: ToastController) { }
 
   ngOnInit() {
     this.credentials = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6)]],
     });
+    setTimeout(() => this.slides.lockSwipes(true));
   }
 
   async login() {
-    const loading = await this.loadingController.create({
-      message: 'Logging in...',
-      duration: 2000
-    });
-    await loading.present();
-    loading.onDidDismiss().then(() => this.slides.slideTo(2));
+    this.errorHandler.addErrorHandler(
+      this.http.post('http://localhost:3000/login', { ...this.credentials.value }))
+      .subscribe(() => {
+        this.notifications.showToast('Login successful.');
+        this.router.navigate(['/tabs/plan']);
+      })
   }
 
   selectCard(idx) {
     this.foodTypes[idx].selected = !this.foodTypes[idx].selected;
+  }
+
+  signUp() {
+    this.router.navigate(['/register']);
   }
 
   // Easy access for form fields

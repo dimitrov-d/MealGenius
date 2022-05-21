@@ -7,8 +7,11 @@ const { router } = require('./routes');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
+}));
 app.use(router);
-app.use(cors({origin: 'http://localhost:4200'}));
 
 
 app.listen(3000, () => console.log("Hackathon app listening on port 3000"));
