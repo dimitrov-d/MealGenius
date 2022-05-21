@@ -7,15 +7,20 @@ router.post('/register', async (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
     const email = req.body.email;
-    const categories = req.body.categories;
+    const diets = req.body.diets;
+    const allergens = req.body.allergens;
     const client = new MongoClient(config.MONGO_DB_URL);
     await client.connect();
     const db = client.db('Cluster0');
     const collection = db.collection('users');
-    await collection.insertOne({ name , password, email, categories });
-    console.log(req.body);
-
-    res.send('Register Success!')
+    const check_user = await collection.findOne({ email, password });
+    if(check_user == null) {
+        await collection.insertOne({ name , password, email, diets, allergens });
+        res.status(200).send('Register Success!');
+    } else {
+        res.status(400).send('Exist');
+    }
+    
 });
 
 router.post('/login', async (req, res) => {
