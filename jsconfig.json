@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": false,
+        "noImplicitThis": true,
+        "noImplicitReturns": false,
+        "noUnusedLocals": true,
+        "strict": false,
+        "checkJs": true,
+        "moduleResolution": "node",
+        "target": "esnext",
+		"resolveJsonModule": true
+    }
+}
