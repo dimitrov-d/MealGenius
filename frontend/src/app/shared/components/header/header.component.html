@@ -1,22 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary" style="height: 60px">
-    <ion-title style="font-size: 2em;">{{title}}</ion-title>
-
-    <ion-buttons slot="start">
-      <ion-back-button style="--icon-font-size: 2.5em; margin-left: 5px" [defaultHref]="defaultHref"></ion-back-button>
-    </ion-buttons>
-    <ion-buttons slot="end" style="margin-top:5px">
-      <ion-item class="item" *ngIf="homeButton">
-        <ion-button style="width:100px" fill="solid" expand="block" (click)="goToHome()">
-          <ion-icon slot="icon-only" name="home"></ion-icon>
-        </ion-button>
-      </ion-item>
-
-      <!-- <ion-item class="item">
-        <ion-button style="width:100px" fill="solid" (click)="logout()">
-          <ion-icon slot="icon-only" name="log-out"></ion-icon>
-        </ion-button>
-      </ion-item> -->
-    </ion-buttons>
+  <ion-toolbar color="primary">
+    <ion-title>Grocery App</ion-title>
   </ion-toolbar>
 </ion-header>

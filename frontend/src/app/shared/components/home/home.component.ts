@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from '@environments/environment';
+import { IonReorderGroup } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',

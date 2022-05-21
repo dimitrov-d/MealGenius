@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { IonSlides, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,24 @@ export class LoginComponent {
   public userId: string = null;
   platforms: string[];
   credentials: FormGroup;
-
+  @ViewChild('slides', { static: false }) slides: IonSlides;
+  foodTypes = [
+    {
+      name: 'Carnivore',
+      imgUrl: 'https://tse2.mm.bing.net/th?id=OIP.N4BH0m2WWOsev6FZ55LMMwHaHa',
+      selected: false
+    },
+    {
+      name: 'Vegetarian',
+      imgUrl: 'https://tse2.mm.bing.net/th?id=OIP.uZ1xUy8MpkmoRgypB-wMuQHaHa',
+      selected: false
+    },
+    {
+      name: 'Vegan',
+      imgUrl: 'https://thumbs.dreamstime.com/b/vector-cartoon-avocado-illustration-icon-design-isolated-white-background-vector-cartoon-avocado-illustration-icon-design-185826718.jpg',
+      selected: false
+    }
+  ]
 
   constructor(
     private fb: FormBuilder,
@@ -31,11 +48,15 @@ export class LoginComponent {
 
   async login() {
     const loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-      message: 'Please wait...',
+      message: 'Logging in...',
       duration: 2000
     });
     await loading.present();
+    loading.onDidDismiss().then(() => this.slides.slideTo(2));
+  }
+
+  selectCard(idx) {
+    this.foodTypes[idx].selected = !this.foodTypes[idx].selected;
   }
 
   // Easy access for form fields
