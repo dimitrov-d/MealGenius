@@ -20,5 +20,7 @@
     </div>
 
     <ion-button type="submit" expand="block" style="margin-top: 20px" [disabled]="password.errors || email.errors">Register</ion-button>
+    <ion-button type="button" expand="block" color="dark" fill="clear" (click)="signIn()">Already a member? Sign in!
+    </ion-button>
   </form>
 </ion-content>

@@ -49,4 +49,8 @@ export class RegisterComponent implements OnInit {
     return this.credentials.get('password');
   }
 
+  signIn() {
+    this.router.navigate(['/login']);
+  }
+
 }
