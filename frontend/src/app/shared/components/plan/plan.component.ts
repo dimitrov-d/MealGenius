@@ -4,10 +4,10 @@ import { IonReorderGroup } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './plan.component.html',
+  styleUrls: ['./plan.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class PlanComponent implements OnInit {
   appVersion: string;
 
   constructor() {

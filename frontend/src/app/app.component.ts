@@ -32,7 +32,6 @@ export class AppComponent implements OnDestroy {
 
   }
 
-
   ngOnDestroy(): void {
   }
 }

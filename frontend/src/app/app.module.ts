@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { HomeComponent } from './shared/components/home/home.component';
+import { PlanComponent } from './shared/components/plan/plan.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
@@ -23,10 +23,14 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
+  // {
+  //   path: 'home',
+  //   component: PlanComponent
+  // },
   {
-    path: 'home',
-    component: HomeComponent
-  },
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  }
 ];
 
 @NgModule({
