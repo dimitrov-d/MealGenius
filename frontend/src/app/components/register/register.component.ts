@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   credentials: FormGroup;
   @ViewChild(IonSlides) slides: IonSlides;
   diets: any[];
+  allergens: any[];
 
   constructor(private fb: FormBuilder,
     private router: Router,
@@ -30,7 +31,8 @@ export class RegisterComponent implements OnInit {
     });
     setTimeout(() => {
       this.http.get('http://localhost:3000/diets').subscribe((diets: any[]) => this.diets = diets);
-      return this.slides.lockSwipes(true);
+      this.http.get('http://localhost:3000/allergens').subscribe((allergens: any[]) => this.allergens = allergens);
+      // return this.slides.lockSwipes(true);
     });
   }
 
@@ -46,8 +48,14 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-  selectCard(idx) {
-    this.diets[idx].selected = !this.diets[idx].selected;
+  selectDiet(idx) {
+    for (let i = 0; i < this.diets.length; i++) {
+      this.diets[i].selected = i === idx;
+    }
+  }
+
+  selectAllergen(idx) {
+    this.allergens[idx].selected = !this.allergens[idx].selected;
   }
 
   // Easy access for form fields
