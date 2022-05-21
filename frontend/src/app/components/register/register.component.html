@@ -2,7 +2,7 @@
 
 <ion-content fullscreen class="ion-padding" scroll-y="false">
   <ion-slides style="display: flex !important">
-    <ion-slide>
+    <!-- <ion-slide>
       <form (ngSubmit)="register()" [formGroup]="credentials" style="margin-top: 30px;">
         <div class="input-group">
           <ion-item>
@@ -25,23 +25,26 @@
     <ion-button type="button" expand="block" color="dark" fill="clear" (click)="signIn()">Already a member? Sign in!
     </ion-button>
   </form>
-    </ion-slide>
+    </ion-slide> -->
     <!-- food types -->
     <ion-slide>
       <ion-grid>
         <h1> Please select your preferred diet type </h1>
-        <ion-row *ngFor="let foodType of diets; let idx=index">
-          <ion-card color="light" [ngStyle]="{'border': foodType.selected ? '2px solid #387FFF' : 'none'}"
+        <ion-row >
+          <ion-col *ngFor="let foodType of diets; let idx=index">
+            <ion-card color="light" class="middle-align" [ngStyle]="{'border': foodType.selected ? '2px solid #387FFF' : 'none'}"
             (click)="selectCard(idx)">
-            <ion-card-content style="width:250px; height:70px;padding-top: 5px;">
-              <ion-avatar slot="start" style="display: inline">
+            <ion-card-content style="padding-top: 5px;">
+              <ion-avatar slot="start" style="display: block; margin: auto;">
                 <img
-                  style="margin-left: -50px; margin-top: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
+                  style="margin-top: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
                   [src]="foodType.img_src" />
               </ion-avatar>
-              <ion-label style="margin-left: 30px">{{foodType.name}}</ion-label>
+              <ion-label style="">{{foodType.name}}</ion-label>
             </ion-card-content>
           </ion-card>
+        </ion-col>
+          
         </ion-row>
       </ion-grid>
     </ion-slide>

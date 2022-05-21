@@ -14,3 +14,9 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
+.middle-align {
+    width: 150px;
+    height: 100px;
+    margin: auto;
+}
