@@ -1,9 +1,10 @@
-const app = require('./app');
 const config = require('dotenv').config().parsed;
 const { MongoClient } = require('mongodb');
+const express = require('express');
+const router = express.Router();
 
 
-app.post('/addNew', async (req, res) => {
+router.post('/addNew', async (req, res) => {
     const name = req.body.name;
     const client = new MongoClient(config.MONGO_DB_URL);
     await client.connect();
@@ -14,3 +15,5 @@ app.post('/addNew', async (req, res) => {
 
     res.send('Success!')
 });
+
+module.exports = { router };
