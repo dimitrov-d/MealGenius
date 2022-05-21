@@ -1,26 +1,58 @@
 <app-header></app-header>
 
 <ion-content fullscreen class="ion-padding" scroll-y="false">
-  <form (ngSubmit)="register()" [formGroup]="credentials" style="margin-top: 30px;">
-    <div class="input-group">
-      <ion-item>
-        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
-      </ion-item>
-      <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
-        <span *ngIf="email.errors?.required">Email is required</span>
-        <span *ngIf="email.errors?.email">Email is invalid</span>
-      </div>
-      <ion-item>
-        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-      </ion-item>
-      <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
-        <span *ngIf="password.errors?.required">Password is required</span>
-        <span *ngIf="password.errors?.minlength">Password needs to be 6 characters</span>
-      </div>
-    </div>
+  <ion-slides style="display: flex !important">
+    <ion-slide>
+      <form (ngSubmit)="register()" [formGroup]="credentials" style="margin-top: 30px;">
+        <div class="input-group">
+          <ion-item>
+            <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+          </ion-item>
+          <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
+            <span *ngIf="email.errors?.required">Email is required</span>
+            <span *ngIf="email.errors?.email">Email is invalid</span>
+          </div>
+          <ion-item>
+            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+          </ion-item>
+          <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+            <span *ngIf="password.errors?.required">Password is required</span>
+            <span *ngIf="password.errors?.minlength">Password needs to be 6 characters</span>
+          </div>
+        </div>
 
     <ion-button type="submit" expand="block" style="margin-top: 20px" [disabled]="password.errors || email.errors">Register</ion-button>
     <ion-button type="button" expand="block" color="dark" fill="clear" (click)="signIn()">Already a member? Sign in!
     </ion-button>
   </form>
+    </ion-slide>
+    <!-- food types -->
+    <ion-slide>
+      <ion-grid>
+        <h1> Please select your nutrition type </h1>
+        <ion-row *ngFor="let foodType of foodTypes; let idx=index">
+          <ion-card color="light" [ngStyle]="{'border': foodType.selected ? '2px solid #387FFF' : 'none'}"
+            (click)="selectCard(idx)">
+            <ion-card-content style="width:250px; height:70px;padding-top: 5px;">
+              <ion-avatar slot="start" style="display: inline">
+                <img
+                  style="margin-left: -50px; margin-top: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
+                  [src]="foodType.imgUrl" />
+              </ion-avatar>
+              <ion-label style="margin-left: 30px">{{foodType.name}}</ion-label>
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide>
+      <!-- <img src="./slide-4.png" /> -->
+      <h2>Ready to Play?</h2>
+      <ion-button fill="clear" routerLink="/home">Continue <a routerLink="/home">
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </a>
+      </ion-button>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

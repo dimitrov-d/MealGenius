@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { IonSlides, ToastController } from '@ionic/angular';
 import { ErrorHandlerService } from '@services/error-handler.service';
 import { NotificationService } from '@services/notifications.service';
 
@@ -13,6 +13,24 @@ import { NotificationService } from '@services/notifications.service';
 })
 export class RegisterComponent implements OnInit {
   credentials: FormGroup;
+  @ViewChild(IonSlides) slides: IonSlides;
+  foodTypes = [
+    {
+      name: 'Carnivore',
+      imgUrl: 'https://tse2.mm.bing.net/th?id=OIP.N4BH0m2WWOsev6FZ55LMMwHaHa',
+      selected: false
+    },
+    {
+      name: 'Vegetarian',
+      imgUrl: 'https://tse2.mm.bing.net/th?id=OIP.uZ1xUy8MpkmoRgypB-wMuQHaHa',
+      selected: false
+    },
+    {
+      name: 'Vegan',
+      imgUrl: 'https://thumbs.dreamstime.com/b/vector-cartoon-avocado-illustration-icon-design-isolated-white-background-vector-cartoon-avocado-illustration-icon-design-185826718.jpg',
+      selected: false
+    }
+  ]
 
   constructor(
     private fb: FormBuilder,
@@ -27,6 +45,7 @@ export class RegisterComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6)]],
     });
+    setTimeout(() => this.slides.lockSwipes(true));
   }
 
   async register() {
@@ -35,9 +54,14 @@ export class RegisterComponent implements OnInit {
         ...this.credentials.value
       }))
       .subscribe(() => {
-        this.notificationService.showToast('Register successful.')
-        this.router.navigate(['/login']);
+        this.notificationService.showToast('User saved successfully.');
+        this.slides.lockSwipes(false);
+        this.slides.slideNext();
       });
+  }
+
+  selectCard(idx) {
+    this.foodTypes[idx].selected = !this.foodTypes[idx].selected;
   }
 
   // Easy access for form fields
