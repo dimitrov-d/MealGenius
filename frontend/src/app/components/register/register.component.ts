@@ -14,26 +14,9 @@ import { NotificationService } from '@services/notifications.service';
 export class RegisterComponent implements OnInit {
   credentials: FormGroup;
   @ViewChild(IonSlides) slides: IonSlides;
-  foodTypes = [
-    {
-      name: 'Carnivore',
-      imgUrl: 'https://tse2.mm.bing.net/th?id=OIP.N4BH0m2WWOsev6FZ55LMMwHaHa',
-      selected: false
-    },
-    {
-      name: 'Vegetarian',
-      imgUrl: 'https://tse2.mm.bing.net/th?id=OIP.uZ1xUy8MpkmoRgypB-wMuQHaHa',
-      selected: false
-    },
-    {
-      name: 'Vegan',
-      imgUrl: 'https://thumbs.dreamstime.com/b/vector-cartoon-avocado-illustration-icon-design-isolated-white-background-vector-cartoon-avocado-illustration-icon-design-185826718.jpg',
-      selected: false
-    }
-  ]
+  diets: any[];
 
-  constructor(
-    private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
     private router: Router,
     private errorHandler: ErrorHandlerService,
     private http: HttpClient,
@@ -45,7 +28,10 @@ export class RegisterComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6)]],
     });
-    setTimeout(() => this.slides.lockSwipes(true));
+    setTimeout(() => {
+      this.http.get('http://localhost:3000/diets').subscribe((diets: any[]) => this.diets = diets);
+      return this.slides.lockSwipes(true);
+    });
   }
 
   async register() {
@@ -61,7 +47,7 @@ export class RegisterComponent implements OnInit {
   }
 
   selectCard(idx) {
-    this.foodTypes[idx].selected = !this.foodTypes[idx].selected;
+    this.diets[idx].selected = !this.diets[idx].selected;
   }
 
   // Easy access for form fields
