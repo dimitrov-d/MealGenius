@@ -1,0 +1,29 @@
+.expand-wrapper {
+    overflow: hidden;
+    height: auto;
+}
+
+.collapsed {
+    max-height: 0 !important;
+}
+
+.card-header {
+    height: 50px;
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.margin {
+    margin-top: -20px;
+}
+
+.margin-2 {
+    margin-top: -25px;
+
+    ion-icon {
+        color: #3880FF
+    }
+}
+
+ion-icon {
+    zoom: 2;
+}

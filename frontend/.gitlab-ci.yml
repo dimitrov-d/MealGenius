@@ -1,0 +1,15 @@
+variables:
+  GIT_STRATEGY: fetch
+
+build_develop:
+  stage: build
+  only:
+    - master
+  tags:
+    - lkp
+    - develop
+    - actual
+  script:
+    - npm ci
+    - npx ng build --configuration=develop
+    - cp -r -force www/* C:/NesifriranoBlago/Mobile

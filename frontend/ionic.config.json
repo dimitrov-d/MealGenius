@@ -1,0 +1,8 @@
+{
+  "name": "NB Mobile",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}
