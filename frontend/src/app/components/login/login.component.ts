@@ -15,24 +15,6 @@ import { NotificationService } from '@services/notifications.service';
 
 export class LoginComponent {
   credentials: FormGroup;
-  @ViewChild(IonSlides) slides: IonSlides;
-  foodTypes = [
-    {
-      name: 'Carnivore',
-      imgUrl: 'https://tse2.mm.bing.net/th?id=OIP.N4BH0m2WWOsev6FZ55LMMwHaHa',
-      selected: false
-    },
-    {
-      name: 'Vegetarian',
-      imgUrl: 'https://tse2.mm.bing.net/th?id=OIP.uZ1xUy8MpkmoRgypB-wMuQHaHa',
-      selected: false
-    },
-    {
-      name: 'Vegan',
-      imgUrl: 'https://thumbs.dreamstime.com/b/vector-cartoon-avocado-illustration-icon-design-isolated-white-background-vector-cartoon-avocado-illustration-icon-design-185826718.jpg',
-      selected: false
-    }
-  ]
 
   constructor(
     private fb: FormBuilder,
@@ -47,7 +29,6 @@ export class LoginComponent {
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6)]],
     });
-    setTimeout(() => this.slides.lockSwipes(true));
   }
 
   async login() {
@@ -57,10 +38,6 @@ export class LoginComponent {
         this.notifications.showToast('Login successful.');
         this.router.navigate(['/tabs/plan']);
       })
-  }
-
-  selectCard(idx) {
-    this.foodTypes[idx].selected = !this.foodTypes[idx].selected;
   }
 
   signUp() {

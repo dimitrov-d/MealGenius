@@ -37,21 +37,7 @@ export class ErrorHandlerService {
     }
 
     exceptionHandler(error) {
-        if (_.get(error, 'error.errorMessage')) {
-            this.notificationService.showErrorMessage(error.error.errorMessage);
-        } else if (_.get(error, 'error.errors')) {
-            this.notificationService.showErrorMessage(error.error.errors[0]);
-        } else if (_.get(error, 'error.ErrorMessage')) {
-            this.notificationService.showErrorMessage(error.error.ErrorMessage);
-        } else if (_.get(error, 'error.error_description')) {
-            this.notificationService.showErrorMessage(error.error.error_description);
-        } else if (_.get(error, 'statusText')) {
-            this.notificationService.showErrorMessage(error.statusText);
-        } else if (_.get(error, 'message')) {
-            this.notificationService.showErrorMessage(error.message);
-        } else {
-            this.notificationService.showErrorMessage('Something went wrong');
-        }
+        this.notificationService.showErrorMessage(error.error.error);
     }
 
 }
