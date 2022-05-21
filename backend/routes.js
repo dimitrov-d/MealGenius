@@ -16,9 +16,9 @@ router.post('/register', async (req, res) => {
     const check_user = await collection.findOne({ email, password });
     if(check_user == null) {
         await collection.insertOne({ name , password, email, diets, allergens });
-        res.status(200).send('Register Success!');
+        res.status(200).send({'error':0});
     } else {
-        res.status(400).send('Exist');
+        res.status(400).send({'error':1});
     }
     
 });
@@ -32,9 +32,9 @@ router.post('/login', async (req, res) => {
     const collection = db.collection('users');
     const user = await collection.findOne({ password, email });
     if(user == null) {
-        res.status(400).send("User not exist");
+        res.status(400).send({'error':1});
     }
-    res.status(200).send('Login Success!');
+    res.status(200).send({'error':0});
 });
 
 
@@ -44,7 +44,7 @@ router.get('/diets', async (req, res) => {
     const db = client.db('Cluster0');
     
     db.collection("foodDiets").find({}).toArray(function(err, result) {
-        if (err) return res.status(400).send("Empty");
+        if (err) return res.status(400).send({'error':1});
         return res.status(200).send(result);
     
       });
@@ -56,7 +56,7 @@ router.get('/diets', async (req, res) => {
         const db = client.db('Cluster0');
         
         db.collection("allergens").find({}).toArray(function(err, result) {
-            if (err) return res.status(400).send("Empty");
+            if (err) return res.status(400).send({'error':1});
             return res.status(200).send(result);
         
           });
@@ -69,7 +69,7 @@ router.get('/diets', async (req, res) => {
             const db = client.db('Cluster0');
             
             db.collection("meals").find({}).toArray(function(err, result) {
-                if (err) return res.status(400).send("Empty");
+                if (err) return res.status(400).send({'error':1});
                 return res.status(200).send(result);
             
               });
