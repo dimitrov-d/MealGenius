@@ -1,9 +1,9 @@
-<ion-content scrollY="true">
+<!-- <ion-content scrollY="true"> -->
   <ion-list>
     <ion-list-header>Ingredients</ion-list-header>
-    <ion-item *ngFor="let entry of [1,2,3]">
-      <ion-label>test</ion-label>
+    <ion-item *ngFor="let ingredient of ingredients">
+      <ion-label>{{ingredient.quantity}} {{ingredient.name}}</ion-label>
       <ion-checkbox slot="end"></ion-checkbox>
     </ion-item>
   </ion-list>
-</ion-content>
+<!-- </ion-content> -->

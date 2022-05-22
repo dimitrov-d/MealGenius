@@ -7,9 +7,9 @@ import { NavParams } from '@ionic/angular';
   styleUrls: ['./popover.component.scss']
 })
 export class PopoverComponent {
-  data: string;
+  ingredients: any[];
 
   constructor(private navParams: NavParams) {
-    this.data = navParams.get('data');
+    this.ingredients = navParams.get('ingredients');
   }
 }

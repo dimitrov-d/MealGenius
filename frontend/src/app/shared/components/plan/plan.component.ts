@@ -10,27 +10,31 @@ import { PopoverComponent } from '../popover/popover.component';
   templateUrl: './plan.component.html',
   styleUrls: ['./plan.component.scss']
 })
-export class PlanComponent implements OnInit {
+export class PlanComponent {
   appVersion: string;
   user: any;
+  meals: any[];
 
   constructor(private http: HttpClient, private errorHandler: ErrorHandlerService,
     public popoverController: PopoverController) {
     this.appVersion = environment.version;
-    this.errorHandler.addErrorHandler(this.http.get('http://localhost:3000/meals'))
-      .subscribe(console.log);
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.errorHandler.addErrorHandler(this.http.get('http://localhost:3000/meals'))
+      .subscribe((meals: any[]) => {
+        this.meals = meals.filter(m => m.type === this.user.diet.name);
+      });
   }
 
-  async presentPopover(ev: any) {
+  async presentPopover(event: any, meal: any) {
     const popover = await this.popoverController.create({
       component: PopoverComponent,
       cssClass: 'my-custom-class',
-      event: ev,
-      translucent: true
+      event,
+      translucent: true,
+      componentProps: { ingredients: meal.ingredients }
     });
     await popover.present();
 
