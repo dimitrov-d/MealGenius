@@ -1,21 +1,20 @@
 <app-header title="OptiEat"></app-header>
 
 <ion-content>
-  <h2 class="p-20">Hi {{user?.name}}</h2>
+  <h2 class="p-20">Hi {{user?.name}}!</h2>
 
   <ion-list>
     <ion-list-header> Your week meal plan </ion-list-header>
     <ion-item-sliding *ngFor="let meal of meals">
       <ion-item (click)="presentPopover($event, meal)">
-
         <ion-avatar slot="start">
-          <img [src]="meal.imageURL" />
+          <img *ngIf="!!meal.imageURL" [src]="meal.imageURL" />
+          <img *ngIf="!meal.imageURL" src="/assets/img/default_meal.png" />
         </ion-avatar>
         <ion-label>
           <h2>{{meal.name}}</h2>
           <h3 style="color: grey">{{meal.ingredients.length}} ingredients</h3>
         </ion-label>
-
       </ion-item>
       <ion-item-options side="end">
         <ion-item-option color="danger" (click)="deleteItem(meal)">Delete</ion-item-option>
@@ -29,4 +28,9 @@
       <ion-checkbox slot="end"></ion-checkbox>
     </ion-item>
   </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addNew()">
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

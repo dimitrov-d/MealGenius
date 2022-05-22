@@ -3,14 +3,12 @@ import { UserService } from '@services/user.service';
 import { Meal } from '@shared/models/Meal';
 import { DataService } from '@services/data.service';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { Component, ViewChild } from '@angular/core';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { PopoverComponent } from '@shared/components/popover/popover.component';
 import { User } from '@shared/models/User';
 import { ShoppingList } from '@shared/models/ShoppingList';
-import { Router } from '@angular/router';
 import { NotificationService } from '@services/notifications.service';
-
 
 @Component({
   selector: 'app-home',
@@ -26,7 +24,8 @@ export class PlanComponent {
     private dataService: DataService,
     public popoverController: PopoverController,
     private errorHandler: ErrorHandlerService,
-    private notificationsService: NotificationService) {
+    private notificationsService: NotificationService,
+    private modalCtrl: ModalController) {
   }
 
   ionViewWillEnter() {
@@ -60,6 +59,16 @@ export class PlanComponent {
       this.http.post('http://localhost:3000/meals/update', { ...meal })
         .subscribe(() => this.getMeals());
     });
+  }
+
+  async addNew() {
+    const res = await this.notificationsService.presentAlertPrompt() as any;
+    if (!res) return;
+    this.errorHandler.addErrorHandler(this.http.post('http://localhost:3000/meals/add', { name: res.name, type: this.user.diet.name }))
+      .subscribe(() => {
+        this.notificationsService.showToast('Meal added successfully');
+        return this.getMeals();
+      });
   }
 
 }

@@ -50,4 +50,32 @@ export class NotificationService {
             await alert.present();
         });
     }
+
+    async presentAlertPrompt() {
+        return new Promise(async (resolve) => {
+            const alert = await this.alertCtrl.create({
+                header: 'Insert a name',
+                inputs: [
+                    {
+                        name: 'name',
+                        type: 'text',
+                        placeholder: 'Lasagna bolognese'
+                    }
+                ],
+                buttons: [
+                    {
+                        text: 'Cancel',
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: () => resolve(false)
+                    }, {
+                        text: 'Save',
+                        handler: (data) => resolve(data)
+                    }
+                ]
+            });
+
+            await alert.present();
+        });
+    }
 }
