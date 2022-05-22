@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
     const collection = db.collection('users');
     const check_user = await collection.findOne({ email, password });
     if (check_user == null) {
-        await collection.insertOne({ name, password, email, diets, allergens });
+        await collection.insertOne({ name, password, email, diets, allergens, meals });
         return res.status(200).send({ 'error': "Registration successfull" });
     } else {
         return res.status(400).send({ 'error': "User already exist", });
@@ -65,7 +65,8 @@ router.post('/currentUser', async (req, res) => {
         return res.status(400).send({ 'error': "Cannot get current user" });
     }
     return res.status(200).send(user);
-})
+});
+
 
 router.post('/updateUser', async (req, res) => {
     const { email } = req.body;
@@ -89,6 +90,32 @@ router.post('/updateUser', async (req, res) => {
     }
 
 });
+
+router.post('/updateMeal', async (req, res) => {
+    const meal = req.body;
+    
+    try {
+        const collection = db.collection('meals');
+        const search_meal = await collection.findOne( {name:meal.name} );
+
+        const updateMeal = {...meal, _id: undefined};
+        delete updateMeal._id;
+        const updateDoc = {
+            $set: {
+                ...updateMeal
+            }
+        };
+
+        const result = await collection.updateOne(search_meal, updateDoc, {upsert: true});
+        return res.status(200).send(result);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({ error: "Unsuccessful meal update" });
+    }
+
+});
+
+
 
 
 module.exports = { router };
