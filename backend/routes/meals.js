@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const { db, router } = require('../index');
 
 // Can be diets, allergens, shopping-list or meals
@@ -17,8 +18,7 @@ router.post('/meals/update', async (req, res) => {
 
     try {
         const collection = db.collection('meals');
-        const search_meal = await collection.findOne({ name: meal.name });
-
+        const search_meal = await collection.findOne({ _id: new ObjectId(meal._id) });
         const updateMeal = { ...meal, _id: undefined };
         delete updateMeal._id;
         const updateDoc = {
