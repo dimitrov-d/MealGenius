@@ -38,8 +38,14 @@ export class PlanComponent {
     });
     await popover.present();
 
-    const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+    popover.onDidDismiss().then(() => {
+      this.http.post('http://localhost:3000/updateMeal', { ...meal }).subscribe(() => {
+        this.http.get('http://localhost:3000/meals')
+          .subscribe((meals: any[]) => {
+            this.meals = meals.filter(m => m.type === this.user.diet.name);
+          });
+      })
+    });
   }
 
 }
