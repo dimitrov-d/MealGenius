@@ -18,7 +18,7 @@
       </ion-col>
     </ion-row>
 
-    <h1> Please select foods you are allergic/intollerant to </h1>
+    <h1> Your selected allergens </h1>
     <ion-row>
       <ion-col *ngFor="let allergen of allergens; let idx=index">
         <ion-card color="light" class="middle-align"
@@ -32,6 +32,11 @@
             <ion-label class="d-block pt-10">{{allergen.name}}</ion-label>
           </ion-card-content>
         </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin-top: 20px">
+      <ion-col>
+        <ion-button expand="block" color="primary" (click)="savePreferences()">Save Preferences</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -2,9 +2,16 @@
 
 <ion-content fullscreen class="ion-padding" scroll-y="false">
   <ion-slides style="display: flex !important">
-    <!-- <ion-slide>
+    <ion-slide>
       <form (ngSubmit)="register()" [formGroup]="credentials" style="margin-top: 30px;">
         <div class="input-group">
+          <ion-item>
+            <ion-input placeholder="Name" formControlName="name"></ion-input>
+          </ion-item>
+          <div *ngIf="(name.dirty || name.touched) && name.errors" class="errors">
+            <span *ngIf="name.errors?.required">Name is required</span>
+            <span *ngIf="name.errors?.email">Name is invalid</span>
+          </div>
           <ion-item>
             <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
           </ion-item>
@@ -25,7 +32,7 @@
     <ion-button type="button" expand="block" color="dark" fill="clear" (click)="signIn()">Already a member? Sign in!
     </ion-button>
   </form>
-    </ion-slide> -->
+    </ion-slide>
     <!-- food types -->
     <ion-slide>
       <ion-grid>
@@ -99,7 +106,7 @@
             <ion-icon slot="start" name="arrow-back"></ion-icon>
             Go Back
           </ion-button>
-          <ion-button fill="clear" [routerLink]='["/tabs/plan"]'>Continue
+          <ion-button fill="clear" (click)="goToHome()">Continue
             <ion-icon slot="end" name="arrow-forward"></ion-icon>
           </ion-button>
         </ion-row>

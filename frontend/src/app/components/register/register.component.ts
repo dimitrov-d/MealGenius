@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
   diets: any[];
   allergens: any[];
+  user: any = {};
 
   constructor(private fb: FormBuilder,
     private router: Router,
@@ -26,13 +27,14 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.credentials = this.fb.group({
+      name: [null, Validators.required, Validators.pattern('^[a-zA-Z]+$')],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6)]],
     });
     setTimeout(() => {
       this.http.get('http://localhost:3000/diets').subscribe((diets: any[]) => this.diets = diets);
       this.http.get('http://localhost:3000/allergens').subscribe((allergens: any[]) => this.allergens = allergens);
-      // return this.slides.lockSwipes(true);
+      this.slides.lockSwipes(true);
     });
   }
 
@@ -45,6 +47,7 @@ export class RegisterComponent implements OnInit {
         this.notificationService.showToast('User saved successfully.');
         this.slides.lockSwipes(false);
         this.slides.slideNext();
+        this.user = { ...this.credentials.value };
       });
   }
 
@@ -53,6 +56,7 @@ export class RegisterComponent implements OnInit {
       this.diets[i].selected = i === idx;
     }
     this.slides.slideNext();
+    this.user.diet = this.diets[idx];
   }
 
   selectAllergen(idx) {
@@ -68,8 +72,18 @@ export class RegisterComponent implements OnInit {
     return this.credentials.get('password');
   }
 
+  get name() {
+    return this.credentials.get('name');
+  }
+
   signIn() {
     this.router.navigate(['/login']);
+  }
+
+  goToHome() {
+    this.user.allergens = this.allergens.filter(allergen => allergen.selected);
+    this.router.navigate(['/tabs/plan']);
+    localStorage.setItem('currentUser', JSON.stringify(this.user));
   }
 
 }

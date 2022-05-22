@@ -1,6 +1,7 @@
 <app-header title="Grocery App" [homeButton]="false"></app-header>
 
 <ion-content>
+  <h1>Hi {{user?.name}}</h1>
   <ion-list>
     <ion-list-header> Recent Conversations </ion-list-header>
     <ion-item *ngFor="let x of [1,2,3,4,5]" (click)="presentPopover($event)">

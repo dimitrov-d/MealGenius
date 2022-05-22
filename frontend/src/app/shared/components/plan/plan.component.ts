@@ -2,7 +2,7 @@ import { ErrorHandlerService } from './../../../services/error-handler.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from '@environments/environment';
-import { IonReorderGroup, PopoverController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
 import { PopoverComponent } from '../popover/popover.component';
 
 @Component({
@@ -12,6 +12,7 @@ import { PopoverComponent } from '../popover/popover.component';
 })
 export class PlanComponent implements OnInit {
   appVersion: string;
+  user: any;
 
   constructor(private http: HttpClient, private errorHandler: ErrorHandlerService,
     public popoverController: PopoverController) {
@@ -21,6 +22,7 @@ export class PlanComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   async presentPopover(ev: any) {
