@@ -119,16 +119,23 @@ router.post('/updateMeal', async (req, res) => {
 router.post('/clearMeals', async (req, res) => {
 
     const collection = db.collection('meals');
-    const meals = await collection.find({});
+    await collection.find({}).toArray(async (err, results) => {
+        if (err) return res.status(400).send({ 'error': 1 });
 
-    const updateDoc = {
-        $set: {
-            checked: false
+        for (const meal of results) {
+            const dbMeal = collection.findOne({ _id: meal._id });
+            meal.ingredients.forEach((ing) => ing.checked = false);
+
+            const updateDoc = {
+                $set: {
+                    ingredients: meal.ingredients
+                }
+            };
+            console.log(meal.ingredients)
+           await collection.updateOne(dbMeal, updateDoc, { upsert: true });
         }
-    };
-    collection.updateMany(meals, updateDoc);
-
-    res.status(200).send("Done");
+        return res.status(200).send("Done");
+    });
 });
 
 
