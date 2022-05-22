@@ -45,7 +45,7 @@ router.post('/meals/delete', async (req, res) => {
 
         const result = await collection.deleteOne(search_meal);
         return res.status(200).send(result);
-    } catch (error) {   
+    } catch (error) {
         console.log(error);
         return res.status(500).send({ error: 'Unsuccessful meal delete!' });
     }

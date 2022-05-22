@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopoverComponent } from '@shared/components/popover/popover.component';
 import { User } from '@shared/models/User';
+import { ShoppingList } from '@shared/models/ShoppingList';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ import { User } from '@shared/models/User';
 export class PlanComponent {
   user: User;
   meals: Meal[];
+  shoppingList: ShoppingList;
 
   constructor(private http: HttpClient, private dataService: DataService,
     public popoverController: PopoverController) {
@@ -26,6 +28,7 @@ export class PlanComponent {
 
   getMeals() {
     this.dataService.getAllMeals((meals) => this.meals = meals.filter(m => m.type === this.user.diet.name));
+    this.dataService.getShoppingLists((lists) => this.shoppingList = lists.find(l => l.type === this.user.diet.name));
   }
 
   async presentPopover(event: any, meal: any) {
