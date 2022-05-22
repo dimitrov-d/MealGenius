@@ -1,8 +1,11 @@
+import { Allergen } from './../../shared/models/Allergen';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NotificationService } from '@services/notifications.service';
 import { ErrorHandlerService } from '@services/error-handler.service';
+import { Diet } from '@shared/models/Diet';
+import { User } from '@shared/models/User';
 
 @Component({
   selector: 'app-preferences',
@@ -11,9 +14,9 @@ import { ErrorHandlerService } from '@services/error-handler.service';
 })
 export class PreferencesComponent {
 
-  diets: any[];
-  allergens: any[];
-  user: any;
+  diets: Diet[];
+  allergens: Allergen[];
+  user: User;
 
   constructor(private http: HttpClient, private router: Router,
     private notifications: NotificationService, private errorHandler: ErrorHandlerService) { }
@@ -40,6 +43,7 @@ export class PreferencesComponent {
 
   selectDiet(idx) {
     for (let i = 0; i < this.diets.length; i++) {
+      // Only a single diet can be selected
       this.diets[i].selected = i === idx;
     }
   }

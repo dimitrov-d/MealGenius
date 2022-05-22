@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
 import { ErrorHandlerService } from '@services/error-handler.service';
 import { NotificationService } from '@services/notifications.service';
+import { User } from '@shared/models/User';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +21,7 @@ export class LoginComponent {
     private router: Router,
     private http: HttpClient,
     private errorHandler: ErrorHandlerService,
-    private notifications: NotificationService,
-    private toastController: ToastController) { }
+    private notifications: NotificationService) { }
 
   ngOnInit() {
     this.credentials = this.fb.group({
@@ -34,7 +33,7 @@ export class LoginComponent {
   async login() {
     this.errorHandler.addErrorHandler(
       this.http.post('http://localhost:3000/auth/login', { ...this.credentials.value }))
-      .subscribe(({user}) => {
+      .subscribe(({ user }: { user: User }) => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.notifications.showToast('Login successful.');
         this.router.navigate(['/tabs/plan']);

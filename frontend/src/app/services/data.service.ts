@@ -1,3 +1,4 @@
+import { Meal } from './../shared/models/Meal';
 import { ErrorHandlerService } from '@services/error-handler.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +10,7 @@ export class DataService {
 
   constructor(private errorHandler: ErrorHandlerService, private http: HttpClient) { }
 
-  getAllMeals(callback: (meals: any[]) => void) {
+  getAllMeals(callback: (meals: Meal[]) => void) {
     this.errorHandler.addErrorHandler(this.http.get('http://localhost:3000/meals/all'))
       .subscribe(callback);
   }

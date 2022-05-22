@@ -1,9 +1,10 @@
+import { Meal } from './../../shared/models/Meal';
 import { DataService } from '@services/data.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { environment } from '@environments/environment';
 import { PopoverController } from '@ionic/angular';
 import { PopoverComponent } from '@shared/components/popover/popover.component';
+import { User } from '@shared/models/User';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +12,11 @@ import { PopoverComponent } from '@shared/components/popover/popover.component';
   styleUrls: ['./plan.component.scss']
 })
 export class PlanComponent {
-  appVersion: string;
-  user: any;
-  meals: any[];
+  user: User;
+  meals: Meal[];
 
   constructor(private http: HttpClient, private dataService: DataService,
     public popoverController: PopoverController) {
-    this.appVersion = environment.version;
   }
 
   ionViewWillEnter() {

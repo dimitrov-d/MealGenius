@@ -1,3 +1,4 @@
+import { Allergen } from './../../shared/models/Allergen';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -5,6 +6,8 @@ import { Router } from '@angular/router';
 import { IonSlides, ToastController } from '@ionic/angular';
 import { ErrorHandlerService } from '@services/error-handler.service';
 import { NotificationService } from '@services/notifications.service';
+import { Diet } from '@shared/models/Diet';
+import { User } from '@shared/models/User';
 
 @Component({
   selector: 'app-register',
@@ -14,9 +17,9 @@ import { NotificationService } from '@services/notifications.service';
 export class RegisterComponent implements OnInit {
   credentials: FormGroup;
   @ViewChild(IonSlides) slides: IonSlides;
-  diets: any[];
-  allergens: any[];
-  user: any = {};
+  diets: Diet[];
+  allergens: Allergen[];
+  user: User;
 
   constructor(private fb: FormBuilder,
     private router: Router,
@@ -32,8 +35,8 @@ export class RegisterComponent implements OnInit {
       password: [null, [Validators.required, Validators.minLength(6)]],
     });
     setTimeout(() => {
-      this.http.get('http://localhost:3000/meals/diets').subscribe((diets: any[]) => this.diets = diets);
-      this.http.get('http://localhost:3000/meals/allergens').subscribe((allergens: any[]) => this.allergens = allergens);
+      this.http.get('http://localhost:3000/meals/diets').subscribe((diets: Diet[]) => this.diets = diets);
+      this.http.get('http://localhost:3000/meals/allergens').subscribe((allergens: Allergen[]) => this.allergens = allergens);
       this.slides.lockSwipes(true);
     });
   }
@@ -53,6 +56,7 @@ export class RegisterComponent implements OnInit {
 
   selectDiet(idx) {
     for (let i = 0; i < this.diets.length; i++) {
+      // Only a single diet can be selected
       this.diets[i].selected = i === idx;
     }
     this.slides.slideNext();

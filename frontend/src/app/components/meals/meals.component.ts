@@ -1,8 +1,8 @@
 import { DataService } from '@services/data.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ErrorHandlerService } from '@services/error-handler.service';
+import { Meal } from '@shared/models/meal';
+import { User } from '@shared/models/User';
 
 @Component({
   selector: 'app-meals',
@@ -11,11 +11,10 @@ import { ErrorHandlerService } from '@services/error-handler.service';
 })
 export class MealsComponent implements OnInit {
 
-  meals: any[];
-  user: any;
+  meals: Meal[];
+  user: User;
 
-  constructor(private http: HttpClient, private router: Router,
-    private dataService: DataService, private errorHandler: ErrorHandlerService) { }
+  constructor(private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));

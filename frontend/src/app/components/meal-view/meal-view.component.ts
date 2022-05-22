@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ErrorHandlerService } from '@services/error-handler.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Meal } from '@shared/models/meal';
 
 @Component({
   selector: 'app-meal-view',
@@ -19,10 +20,7 @@ export class MealViewComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.errorHandler.addErrorHandler(this.http.get('http://localhost:3000/meals/all'))
-      .subscribe((meals: any[]) => {
-        this.meal = meals.find(m => m._id === id);
-        console.log(this.meal);
-      });
+      .subscribe((meals: Meal[]) => this.meal = meals.find(m => m._id === id));
   }
 
   edit() {
