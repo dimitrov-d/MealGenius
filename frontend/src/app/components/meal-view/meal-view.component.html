@@ -5,10 +5,9 @@
       <ion-col size="8">
         <h1> {{meal.name}} </h1>
       </ion-col>
-      <ion-col size="2">
-        <ion-button color="primary" (click)="edit()">Edit<ion-icon name="create" style="padding-left: 5px"></ion-icon>
+      <ion-col size="2" class="mt-30">
+        <ion-button color="secondary" class="mr-5" (click)="edit()">Edit<ion-icon name="create" style="padding-left: 5px"></ion-icon>
         </ion-button>
-
       </ion-col>
     </ion-row>
     <ion-row *ngIf="editMode">
@@ -22,13 +21,14 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-card color="light" class="middle-align">
+  <ion-card color="light" class="middle-align kill_box text-center">
     <ion-card-content style="padding-top: 5px;">
       <img [src]="meal.imageURL" />
       <!-- <h1 class="d-block pt-10">{{meal.name}}</h1> -->
       <br>
+      <br>
       <h1> Cooking steps </h1>
-      <ul>
+      <ul class="pl-15">
         <li *ngFor="let step of meal.steps">{{step}}</li>
       </ul>
     </ion-card-content>

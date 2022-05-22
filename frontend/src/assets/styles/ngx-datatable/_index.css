@@ -234,6 +234,23 @@
           margin-top: 20px;
         }
 
+        .mt-30 {
+          margin-top: 30px;
+        }
+
+        .mr-5 {
+          margin-right: 5px;
+        }
+
+        .kill_box {
+          background: transparent;
+    box-shadow: none;
+        }
+
+        .pl-15 {
+          padding-left: 15px;
+        }
+
         .font_14 {
           font-size: 14px;
         }
