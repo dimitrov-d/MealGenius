@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { NotificationService } from '@services/notifications.service';
+import { ErrorHandlerService } from '@services/error-handler.service';
 
 @Component({
   templateUrl: 'header.component.html',
@@ -16,9 +19,11 @@ export class HeaderComponent {
   appVersion: string;
   authSub: Subscription;
 
-  constructor(private router: Router) { }
+  constructor(private http: HttpClient, private router: Router,
+    private notifications: NotificationService, private errorHandler: ErrorHandlerService) { }
 
   logout() {
+    this.http.get('http://localhost:3000/clearMeals');
     this.router.navigate(['/login']);
   }
 
