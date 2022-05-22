@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const { db, router } = require('../index');
 
 // Can be diets, allergens, shopping-list or meals
@@ -36,12 +37,12 @@ router.post('/meals/update', async (req, res) => {
 });
 
 router.post('/meals/delete', async (req, res) => {
-    const meal = req.body;
-    if (!meal) return res.status(400).send({ 'error': 'No meal provided!' });
+    const { _id } = req.body;
+    if (!_id) return res.status(400).send({ 'error': 'No meal ID provided!' });
 
     try {
         const collection = db.collection('meals');
-        const search_meal = await collection.findOne({ name: meal.name });
+        const search_meal = await collection.findOne({ _id: new ObjectId(_id) });
 
         const result = await collection.deleteOne(search_meal);
         return res.status(200).send(result);
