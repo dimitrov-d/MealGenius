@@ -116,5 +116,21 @@ router.post('/updateMeal', async (req, res) => {
 });
 
 
+router.post('/clearMeals', async (req, res) => {
+    
+    const collection = db.collection('meals');
+    const meals = await collection.find({});
+
+    const updateDoc = {
+        $set: {
+            checked: false
+        }
+    };
+    collection.updateMany(meals, updateDoc);
+
+    res.status(200).send("Done");
+});
+
+
 
 module.exports = { router };
