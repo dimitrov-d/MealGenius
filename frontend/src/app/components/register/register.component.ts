@@ -85,7 +85,7 @@ export class RegisterComponent implements OnInit {
   }
 
   anyDietSelected() {
-    return this.diets.some(x => x.selected)
+    return this.diets?.some(x => x.selected)
   }
 
   goToHome() {
