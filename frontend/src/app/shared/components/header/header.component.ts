@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./header.component.scss']
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() title;
   @Input() defaultHref: string;
   @Input() homeButton = true;
@@ -18,14 +18,12 @@ export class HeaderComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
-
-  goToHome() {
-  }
-
   logout() {
     this.router.navigate(['/login']);
+  }
+
+  isTabPage() {
+    return this.router.url.includes('tabs');
   }
 
 }
