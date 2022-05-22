@@ -1,16 +1,23 @@
 <app-header title="OptiMeal"></app-header>
 <ion-content *ngIf="meal">
   <ion-grid>
-    <ion-row>
+    <ion-row *ngIf="!editMode">
       <ion-col size="8">
-        <h1 *ngIf="!editMode"> {{meal.name}} </h1>
-        <ion-input *ngIf=" editMode" placeholder="Enter Input">
-        </ion-input>
+        <h1> {{meal.name}} </h1>
       </ion-col>
       <ion-col size="2">
-        <ion-button *ngIf="!editMode" color="primary" (click)="edit()">Edit<ion-icon name="create" style="padding-left: 5px"></ion-icon>
+        <ion-button color="primary" (click)="edit()">Edit<ion-icon name="create" style="padding-left: 5px"></ion-icon>
         </ion-button>
-        <ion-button *ngIf="editMode" color="primary" (click)="save()">Save<ion-icon name="save" style="padding-left: 5px"></ion-icon>
+
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="editMode">
+      <ion-col size="12">
+        <ion-input [(ngModel)]="meal.name" class="name-input">
+        </ion-input>
+      </ion-col>
+      <ion-col size="2" offset="8">
+        <ion-button color="primary" (click)="save()">Save<ion-icon name="save" style="padding-left: 5px"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>

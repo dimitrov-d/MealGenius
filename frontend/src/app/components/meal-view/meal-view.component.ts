@@ -18,6 +18,10 @@ export class MealViewComponent implements OnInit {
     private http: HttpClient) { }
 
   ngOnInit() {
+    this.getMeal();
+  }
+
+  getMeal() {
     const id = this.route.snapshot.paramMap.get('id');
     this.errorHandler.addErrorHandler(this.http.get('http://localhost:3000/collections/meals'))
       .subscribe((meals: Meal[]) => this.meal = meals.find(m => m._id === id));
@@ -28,7 +32,11 @@ export class MealViewComponent implements OnInit {
   }
 
   save() {
-    this.editMode = false;
+    this.http.post('http://localhost:3000/meals/update', { ...this.meal })
+      .subscribe(() => {
+        this.editMode = false;
+        this.getMeal();
+      });
   }
 
 }
