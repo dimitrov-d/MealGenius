@@ -16,7 +16,7 @@ export class ErrorHandlerService {
     addErrorHandler(observable: Observable<any>) {
         return new Observable((observer) => {
             this.loadingCtrl.create().then(loader => {
-                loader.present();
+                // loader.present();
                 return this.invokeSubscription({ observable, observer, loader });
             });
         });

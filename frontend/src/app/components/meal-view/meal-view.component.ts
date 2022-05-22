@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./meal-view.component.css']
 })
 export class MealViewComponent implements OnInit {
-
+  editMode = false;
   meal: any;
 
   constructor(private route: ActivatedRoute,
@@ -23,6 +23,14 @@ export class MealViewComponent implements OnInit {
         this.meal = meals.find(m => m._id === id);
         console.log(this.meal);
       });
+  }
+
+  edit() {
+    this.editMode = true;
+  }
+
+  save() {
+    this.editMode = false;
   }
 
 }
