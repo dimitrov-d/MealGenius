@@ -43,10 +43,8 @@ export class UserService {
     }
 
     logout(addReturnUrl = true) {
-        if (this.hasAccessToken()) {
-            localStorage.removeItem(this.getAccessTokenKey());
-            localStorage.removeItem('currentUser');
-        }
+        localStorage.removeItem(this.getAccessTokenKey());
+        localStorage.removeItem('currentUser');
 
         this.updateIsAuthenticatedSubject(false);
         this.updateCurrentUser(null);
