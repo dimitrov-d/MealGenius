@@ -12,7 +12,7 @@
           <ion-card-content>
             <ion-avatar slot="start" class="d-block m-auto">
               <img *ngIf="!!meal.imageURL" [src]="meal.imageURL" />
-              <img class="meal-img" *ngIf="!meal.imageURL" src="/assets/img/default_meal.png" />
+              <img class="avatar-img" *ngIf="!meal.imageURL" src="/assets/img/default_meal.png" />
             </ion-avatar>
             <ion-label class="d-block text-center pt-10 font_14 mh-50">{{meal.name}}</ion-label>
           </ion-card-content>

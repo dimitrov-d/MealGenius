@@ -84,6 +84,10 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  anyDietSelected() {
+    return this.diets.some(x => x.selected)
+  }
+
   goToHome() {
     const userObj = {
       ...this.user,
@@ -92,8 +96,8 @@ export class RegisterComponent implements OnInit {
     };
     this.errorHandler.addErrorHandler(this.http.post('http://localhost:3000/user/update', userObj))
       .subscribe(() => {
-        this.router.navigate(['/tabs/plan'], { replaceUrl: true });
         localStorage.setItem('currentUser', JSON.stringify(userObj));
+        setTimeout(() => this.router.navigate(['/tabs/plan'], { replaceUrl: true }));
       });
   }
 

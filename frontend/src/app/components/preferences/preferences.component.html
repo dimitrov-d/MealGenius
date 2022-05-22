@@ -2,16 +2,15 @@
 <ion-content>
   <ion-grid>
     <ion-row class="jc">
-      <ion-col size="12"><h2 class="p-20 pb-0"> Choose your preferred diet type </h2>
+      <ion-col size="12">
+        <h2 class="p-20 pb-0"> Choose your preferred diet type </h2>
       </ion-col>
       <ion-col size="6" *ngFor="let diet of diets; let idx=index">
         <ion-card color="light" class="middle-align"
           [ngStyle]="{'border': diet.selected ? '2px solid #387FFF' : 'none'}" (click)="selectDiet(idx)">
           <ion-card-content>
             <ion-avatar slot="start" class="d-block m-auto">
-              <img
-                style="margin-bottom: 5px; max-height: 100px !important; max-width: 100px !important;"
-                [src]="diet.img_src" />
+              <img class="avatar-img" [src]="diet.img_src" />
             </ion-avatar>
             <ion-label class="d-block text-center pt-10 font_14">{{diet.name}}</ion-label>
           </ion-card-content>
@@ -20,15 +19,15 @@
     </ion-row>
 
     <ion-row class="jc">
-      <ion-col size="12"><h2 class="p-20 pb-0"> Your selected allergens </h2></ion-col>
+      <ion-col size="12">
+        <h2 class="p-20 pb-0"> Allergens </h2>
+      </ion-col>
       <ion-col size="6" *ngFor="let allergen of allergens; let idx=index">
         <ion-card color="light" class="middle-align"
           [ngStyle]="{'border': allergen.selected ? '2px solid #387FFF' : 'none'}" (click)="selectAllergen(idx)">
           <ion-card-content>
             <ion-avatar slot="start" class="d-block m-auto">
-              <img
-                style="margin-bottom: 5px; max-height: 100px !important; max-width: 100px !important;"
-                [src]="allergen.img_src" />
+              <img class="avatar-img" [src]="allergen.img_src" />
             </ion-avatar>
             <ion-label class="d-block text-center pt-10 font_14">{{allergen.name}}</ion-label>
           </ion-card-content>
