@@ -1,16 +1,15 @@
-<app-header title="Grocery App" [homeButton]="false"></app-header>
+<app-header title="OptiMeal" [homeButton]="false"></app-header>
 <ion-content>
   <ion-grid>
-    <h1> Your preferred diet type </h1>
+    <h1> Meals list </h1>
     <ion-row>
       <ion-col *ngFor="let meal of meals; let idx=index">
-        <ion-card color="light" class="middle-align"
-          [ngStyle]="" (click)="selectMeal(idx)">
+        <ion-card color="light" class="middle-align" (click)="openMeal(meal._id)">
           <ion-card-content style="padding-top: 5px;">
             <ion-avatar slot="start" style="display: block; margin: auto;">
               <img
                 style="margin-bottom: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
-                [src]="meal.img_src" />
+                [src]="meal.imageURL" />
             </ion-avatar>
             <ion-label class="d-block pt-10">{{meal.name}}</ion-label>
           </ion-card-content>

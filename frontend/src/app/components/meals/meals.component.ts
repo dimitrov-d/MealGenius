@@ -25,4 +25,8 @@ export class MealsComponent implements OnInit {
     });
   }
 
+  openMeal(id) {
+    this.router.navigate(['/tabs/meal', id]);
+  }
+
 }
