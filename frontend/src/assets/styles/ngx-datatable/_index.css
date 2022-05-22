@@ -196,3 +196,44 @@
         display: inline-block; }
       .ngx-datatable .datatable-footer .datatable-pager .pager li.disabled a {
         cursor: not-allowed; }
+
+
+        .d-block {
+          display: block;
+        }
+
+        .text-center {
+          text-align: center;
+        }
+
+        .m-auto {
+          margin: auto;
+        }
+
+        .pt-10 {
+          padding-top: 10px;
+        }
+
+        .p-20 {
+          padding: 20px;
+        }
+
+        .pb-0 {
+          padding-bottom: 0;
+        }
+
+        .mh-50 {
+          min-height: 50px;
+        }
+
+        .jc {
+          justify-content: center;
+        }
+
+        .mt-20 {
+          margin-top: 20px;
+        }
+
+        .font_14 {
+          font-size: 14px;
+        }

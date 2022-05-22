@@ -1,17 +1,20 @@
 <app-header title="OptiMeal"></app-header>
 <ion-content>
   <ion-grid>
-    <h1> Meals list </h1>
-    <ion-row>
-      <ion-col *ngFor="let meal of meals; let idx=index">
+  
+    <ion-row class="jc">
+      <ion-col size="12"><h2 class="p-20 pb-0"> Meals list </h2>
+      </ion-col>
+
+      <ion-col size="6" *ngFor="let meal of meals; let idx=index">
         <ion-card color="light" class="middle-align" (click)="openMeal(meal._id)">
-          <ion-card-content style="padding-top: 5px;">
-            <ion-avatar slot="start" style="display: block; margin: auto;">
+          <ion-card-content>
+            <ion-avatar slot="start" class="d-block m-auto">
               <img
-                style="margin-bottom: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
+                style="margin-bottom: 5px; max-height: 100px !important; max-width: 100px !important;"
                 [src]="meal.imageURL" />
             </ion-avatar>
-            <ion-label class="d-block pt-10">{{meal.name}}</ion-label>
+            <ion-label class="d-block text-center pt-10 font_14 mh-50">{{meal.name}}</ion-label>
           </ion-card-content>
         </ion-card>
       </ion-col>

@@ -1,9 +1,9 @@
 <app-header title="OptiMeal"></app-header>
 
 <ion-content>
-  <h1>Hi {{user?.name}}</h1>
-  <ion-list style="margin-top: 20px">
-    <ion-list-header> This week's meals </ion-list-header>
+  <h2 class="p-20">Hi {{user?.name}}</h2>
+  <ion-list>
+    <ion-list-header> Your week meal plan </ion-list-header>
     <ion-item *ngFor="let meal of meals" (click)="presentPopover($event, meal)">
       <ion-avatar slot="start">
         <img [src]="meal.imageURL" />
