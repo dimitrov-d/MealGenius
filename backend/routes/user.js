@@ -9,18 +9,13 @@ router.post('/user/currentUser', async (req, res) => {
 });
 
 router.post('/user/update', async (req, res) => {
-    const { email } = req.body;
-    const newDiet = req.body.diet;
-    const newAllergens = req.body.allergens;
+    const { email, diet, allergens, shoppingList } = req.body;
     try {
         const collection = db.collection('users');
         const user = await collection.findOne({ email });
 
         const updateDoc = {
-            $set: {
-                diet: newDiet,
-                allergens: newAllergens
-            },
+            $set: { diet, allergens, shoppingList },
         };
 
         const result = await collection.updateOne(user, updateDoc);

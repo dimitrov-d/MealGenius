@@ -1,4 +1,4 @@
-import { Allergen } from './../../shared/models/Allergen';
+import { Allergen } from '@shared/models/Allergen';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -35,8 +35,8 @@ export class RegisterComponent implements OnInit {
       password: [null, [Validators.required, Validators.minLength(6)]],
     });
     setTimeout(() => {
-      this.http.get('http://localhost:3000/meals/diets').subscribe((diets: Diet[]) => this.diets = diets);
-      this.http.get('http://localhost:3000/meals/allergens').subscribe((allergens: Allergen[]) => this.allergens = allergens);
+      this.http.get('http://localhost:3000/collections/diets').subscribe((diets: Diet[]) => this.diets = diets);
+      this.http.get('http://localhost:3000/collections/allergens').subscribe((allergens: Allergen[]) => this.allergens = allergens);
       this.slides.lockSwipes(true);
     });
   }

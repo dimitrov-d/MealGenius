@@ -1,4 +1,4 @@
-import { Allergen } from './../../shared/models/Allergen';
+import { Allergen } from '@shared/models/Allergen';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
@@ -24,11 +24,11 @@ export class PreferencesComponent {
   ionViewWillEnter() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.user = currentUser;
-    this.http.get('http://localhost:3000/meals/diets').subscribe((diets: any[]) => {
+    this.http.get('http://localhost:3000/collections/diets').subscribe((diets: any[]) => {
       this.diets = diets;
       this.selectDiet(this.diets.findIndex(d => d._id === currentUser.diet._id));
     });
-    this.http.get('http://localhost:3000/meals/allergens').subscribe((allergens: any[]) => {
+    this.http.get('http://localhost:3000/collections/allergens').subscribe((allergens: any[]) => {
       this.allergens = allergens;
       this.allergens.forEach(al => {
         if (currentUser.allergens.map(a => a._id).includes(al._id)) {

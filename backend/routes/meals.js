@@ -1,22 +1,12 @@
 const { db, router } = require('../index');
 
-router.get('/meals/diets', async (req, res) => {
-    db.collection('foodDiets').find({}).toArray((err, result) => {
-        if (err) return res.status(400).send({ 'error': 'An error occured while getting the diets' });
-        return res.status(200).send(result);
-    });
-});
+// Can be diets, allergens, shopping-list or meals
+router.get('/collections/:collection', async (req, res) => {
+    const collection = req.params.collection;
+    if (!collection) return res.status(400).send('No collection specified');
 
-router.get('/meals/allergens', async (req, res) => {
-    db.collection('allergens').find({}).toArray((err, result) => {
-        if (err) return res.status(400).send({ 'error': 'An error occured while getting the allergens' });
-        return res.status(200).send(result);
-    });
-});
-
-router.get('/meals/all', async (req, res) => {
-    db.collection('meals').find({}).toArray((err, result) => {
-        if (err) return res.status(400).send({ 'error': 'An error occured while getting the meals' });
+    db.collection(collection).find({}).toArray((err, result) => {
+        if (err) return res.status(400).send({ 'error': `An error occured while getting the ${collection}s` });
         return res.status(200).send(result);
     });
 });
@@ -45,6 +35,7 @@ router.post('/meals/update', async (req, res) => {
     }
 });
 
+// Mark all meals as unchecked
 router.post('/meals/clearAll', async (req, res) => {
     const collection = db.collection('meals');
     await collection.find({}).toArray(async (err, results) => {
@@ -59,13 +50,12 @@ router.post('/meals/clearAll', async (req, res) => {
                     ingredients: meal.ingredients
                 }
             };
-            console.log(meal.ingredients);
             await collection.updateOne(dbMeal, updateDoc, { upsert: true });
         }
     });
     // collection.updateMany(meals, updateDoc);
 
-    res.status(200).send('Done');
+    res.status(200).send({ 'success': true });
 });
 
 module.exports = router;

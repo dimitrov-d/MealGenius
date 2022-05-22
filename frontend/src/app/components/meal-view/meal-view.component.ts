@@ -19,7 +19,7 @@ export class MealViewComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.errorHandler.addErrorHandler(this.http.get('http://localhost:3000/meals/all'))
+    this.errorHandler.addErrorHandler(this.http.get('http://localhost:3000/collections/meals'))
       .subscribe((meals: Meal[]) => this.meal = meals.find(m => m._id === id));
   }
 

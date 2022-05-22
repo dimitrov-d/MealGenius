@@ -11,7 +11,7 @@ export class DataService {
   constructor(private errorHandler: ErrorHandlerService, private http: HttpClient) { }
 
   getAllMeals(callback: (meals: Meal[]) => void) {
-    this.errorHandler.addErrorHandler(this.http.get('http://localhost:3000/meals/all'))
+    this.errorHandler.addErrorHandler(this.http.get('http://localhost:3000/collections/meals'))
       .subscribe(callback);
   }
 }
