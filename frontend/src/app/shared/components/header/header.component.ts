@@ -23,7 +23,7 @@ export class HeaderComponent {
     private notifications: NotificationService, private errorHandler: ErrorHandlerService) { }
 
   logout() {
-    this.http.get('http://localhost:3000/clearMeals');
+    this.http.post('http://localhost:3000/clearMeals', {}).subscribe();
     this.router.navigate(['/login']);
   }
 

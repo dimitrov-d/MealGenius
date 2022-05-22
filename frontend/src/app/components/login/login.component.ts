@@ -34,7 +34,8 @@ export class LoginComponent {
   async login() {
     this.errorHandler.addErrorHandler(
       this.http.post('http://localhost:3000/login', { ...this.credentials.value }))
-      .subscribe(() => {
+      .subscribe(({user}) => {
+        localStorage.setItem('currentUser', JSON.stringify(user));
         this.notifications.showToast('Login successful.');
         this.router.navigate(['/tabs/plan']);
       })

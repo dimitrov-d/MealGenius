@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
     if (user == null) {
         return res.status(400).send({ 'error': "Wrong email or password" });
     }
-    return res.status(200).send({ 'error': 0 });
+    return res.status(200).send({ user });
 });
 
 
@@ -93,7 +93,7 @@ router.post('/updateUser', async (req, res) => {
 
 router.post('/updateMeal', async (req, res) => {
     const meal = req.body;
-    
+
     try {
         const collection = db.collection('meals');
         const search_meal = await collection.findOne( {name:meal.name} );
@@ -117,7 +117,7 @@ router.post('/updateMeal', async (req, res) => {
 
 
 router.post('/clearMeals', async (req, res) => {
-    
+
     const collection = db.collection('meals');
     const meals = await collection.find({});
 
