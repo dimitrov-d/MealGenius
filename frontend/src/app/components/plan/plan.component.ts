@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { Meal } from './../../shared/models/Meal';
 import { DataService } from '@services/data.service';
 import { HttpClient } from '@angular/common/http';
@@ -18,12 +19,13 @@ export class PlanComponent {
   shoppingList: ShoppingList;
 
   constructor(private http: HttpClient, private dataService: DataService,
-    public popoverController: PopoverController) {
+    public popoverController: PopoverController, private userService: UserService) {
   }
 
   ionViewWillEnter() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.getMeals();
+    console.log(this.userService.getCurrentUser());
   }
 
   getMeals() {

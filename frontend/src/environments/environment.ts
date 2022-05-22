@@ -4,7 +4,8 @@
 
 export const environment = {
     version: '0.0.1',
-    production: false
+    production: false,
+    accessToken: 'token'
 }
 
 /*

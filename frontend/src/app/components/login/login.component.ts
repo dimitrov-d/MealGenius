@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorHandlerService } from '@services/error-handler.service';
 import { NotificationService } from '@services/notifications.service';
+import { UserService } from '@services/user.service';
 import { User } from '@shared/models/User';
 
 @Component({
@@ -19,7 +20,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private http: HttpClient,
+    private userService: UserService,
     private errorHandler: ErrorHandlerService,
     private notifications: NotificationService) { }
 
@@ -30,14 +31,8 @@ export class LoginComponent {
     });
   }
 
-  async login() {
-    this.errorHandler.addErrorHandler(
-      this.http.post('http://localhost:3000/auth/login', { ...this.credentials.value }))
-      .subscribe(({ user }: { user: User }) => {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.notifications.showToast('Login successful.');
-        this.router.navigate(['/tabs/plan']);
-      })
+  login() {
+    this.userService.login(this.email.value, this.password.value);
   }
 
   signUp() {

@@ -22,35 +22,29 @@ router.post('/auth/login', async (req, res) => {
         return res.status(400).send({ 'error': 'Wrong email or password' });
     }
 
-    let jwtSecretKey = process.env.JWT_SECRET_KEY;
-    let data = {
-        time: Date(),
+    const jwtSecretKey = process.env.JWT_SECRET_KEY;
+    const data = {
+        createdDate: Date.now(),
+        // 10 hours from now
+        expiryDate: Date.now() + 10 * 60 * 1000,
         ...user
-    }
-  
+    };
+
     const token = jwt.sign(data, jwtSecretKey);
     return res.status(200).send({ token });
 });
 
-router.get("/auth/validateToken", (req, res) => {
-    // Tokens are generally passed in the header of the request
-    // Due to security reasons.
-  
-    let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-    let jwtSecretKey = process.env.JWT_SECRET_KEY;
-  
+router.get('/auth/validateToken', (req, res) => {
+    const jwtSecretKey = process.env.JWT_SECRET_KEY;
+
     try {
-        const token = req.header(tokenHeaderKey);
-  
+        const token = req.header('Authorization');
+
         const verified = jwt.verify(token, jwtSecretKey);
-        if(verified){
-            return res.send("Successfully Verified");
-        }else{
-            // Access Denied
-            return res.status(401).send({"error":"Problem verifying"});
-        }
+        return verified ? res.send({ success: true, message: 'Successfully Verified' })
+            // Token expired
+            : res.status(401).send({ 'error': 'Unauthorized' });
     } catch (error) {
-        // Access Denied
         return res.status(401).send(error);
     }
 });

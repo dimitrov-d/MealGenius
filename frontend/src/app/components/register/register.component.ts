@@ -85,9 +85,16 @@ export class RegisterComponent implements OnInit {
   }
 
   goToHome() {
-    this.user.allergens = this.allergens.filter(allergen => allergen.selected);
-    this.router.navigate(['/tabs/plan']);
-    localStorage.setItem('currentUser', JSON.stringify(this.user));
+    const userObj = {
+      ...this.user,
+      diet: this.diets.find(x => x.selected),
+      allergens: this.allergens.filter(x => x.selected)
+    };
+    this.errorHandler.addErrorHandler(this.http.post('http://localhost:3000/user/update', userObj))
+      .subscribe(() => {
+        this.router.navigate(['/tabs/plan'], { replaceUrl: true });
+        localStorage.setItem('currentUser', JSON.stringify(userObj));
+      });
   }
 
 }
