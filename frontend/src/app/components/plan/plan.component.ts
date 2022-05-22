@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../services/error-handler.service';
 import { UserService } from '@services/user.service';
 import { Meal } from '@shared/models/Meal';
 import { DataService } from '@services/data.service';
@@ -21,8 +22,11 @@ export class PlanComponent {
   meals: Meal[];
   shoppingList: ShoppingList;
 
-  constructor(private http: HttpClient, private dataService: DataService,
-    public popoverController: PopoverController, private userService: UserService) {
+  constructor(private http: HttpClient,
+    private dataService: DataService,
+    public popoverController: PopoverController,
+    private errorHandler: ErrorHandlerService,
+    private notificationsService: NotificationService) {
   }
 
   ionViewWillEnter() {
@@ -36,10 +40,11 @@ export class PlanComponent {
   }
 
 
-  deleteItem(meal) {
-    this.http.post('http://localhost:3000/meals/delete',  {"_id":meal._id} ).subscribe(() => {
-      this.getMeals();
-    });
+  async deleteItem(meal) {
+    const confirmed = await this.notificationsService.presentConfirm('Confirm', 'Are you sure you want to delete this meal?');
+    if (!confirmed) return;
+    this.errorHandler.addErrorHandler(this.http.post('http://localhost:3000/meals/delete', { "_id": meal._id }))
+      .subscribe(() => this.getMeals());
   }
 
   async presentPopover(event: any, meal: any) {
