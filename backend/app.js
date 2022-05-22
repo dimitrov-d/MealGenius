@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const authRouter = require('./routes/auth');
 const mealsRouter = require('./routes/meals');
