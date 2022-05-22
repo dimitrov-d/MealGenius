@@ -10,6 +10,7 @@ export class MealsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

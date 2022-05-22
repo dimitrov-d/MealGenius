@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
     const collection = db.collection('users');
     const check_user = await collection.findOne({ email, password });
     if (check_user == null) {
-        await collection.insertOne({ name, password, email, diets, allergens, meals });
+        await collection.insertOne({ name, password, email, diets, allergens });
         return res.status(200).send({ 'error': "Registration successfull" });
     } else {
         return res.status(400).send({ 'error': "User already exist", });
