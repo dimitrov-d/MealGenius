@@ -1,3 +1,4 @@
+import { MealsComponent } from './components/meals/meals.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { PreloadAllModules, RouteReuseStrategy, RouterModule, Routes } from '@angular/router';
@@ -50,7 +51,7 @@ const routes: Routes = [
     HttpClientModule,
     IonicStorageModule.forRoot(),
   ],
-  declarations: [AppComponent, LoginComponent, RegisterComponent, PreferencesComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, PreferencesComponent, MealsComponent],
   entryComponents: [],
   providers: [
     StatusBar,

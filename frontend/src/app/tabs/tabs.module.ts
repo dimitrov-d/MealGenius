@@ -1,3 +1,4 @@
+import { MealsComponent } from './../components/meals/meals.component';
 import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
@@ -20,14 +21,10 @@ const routes: Routes = [
         path: 'preferences',
         component: PreferencesComponent
       },
-      // {
-      //   path: 'tab2',
-      //   loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
-      // },
-      // {
-      //   path: 'tab3',
-      //   loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
-      // },
+      {
+        path: 'meals',
+        component: MealsComponent
+      },
       {
         path: '',
         redirectTo: '/tabs/plan',
