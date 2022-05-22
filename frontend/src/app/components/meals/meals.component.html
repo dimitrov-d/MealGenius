@@ -18,27 +18,6 @@
       </ion-col>
     </ion-row>
 
-    <h1> Your selected allergens </h1>
-    <ion-row>
-      <ion-col *ngFor="let allergen of allergens; let idx=index">
-        <ion-card color="light" class="middle-align"
-          [ngStyle]="{'border': allergen.selected ? '2px solid #387FFF' : 'none'}" (click)="selectAllergen(idx)">
-          <ion-card-content style="padding-top: 5px;">
-            <ion-avatar slot="start" style="display: block; margin: auto;">
-              <img
-                style="margin-bottom: 5px; height: 50px !important; width: 50px !important; max-height: 100px !important; max-width: 100px !important;"
-                [src]="allergen.img_src" />
-            </ion-avatar>
-            <ion-label class="d-block pt-10">{{allergen.name}}</ion-label>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row style="margin-top: 20px">
-      <ion-col>
-        <ion-button expand="block" color="primary" (click)="savePreferences()">Save Preferences</ion-button>
-      </ion-col>
-    </ion-row>
   </ion-grid>
 
 </ion-content>
