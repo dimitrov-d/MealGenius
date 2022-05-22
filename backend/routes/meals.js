@@ -35,6 +35,22 @@ router.post('/meals/update', async (req, res) => {
     }
 });
 
+router.post('/meals/delete', async (req, res) => {
+    const meal = req.body;
+    if (!meal) return res.status(400).send({ 'error': 'No meal provided!' });
+
+    try {
+        const collection = db.collection('meals');
+        const search_meal = await collection.findOne({ name: meal.name });
+
+        const result = await collection.deleteOne(search_meal);
+        return res.status(200).send(result);
+    } catch (error) {   
+        console.log(error);
+        return res.status(500).send({ error: 'Unsuccessful meal delete!' });
+    }
+});
+
 // Mark all meals as unchecked
 router.post('/meals/clearAll', async (req, res) => {
     const collection = db.collection('meals');
