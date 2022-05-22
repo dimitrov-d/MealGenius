@@ -16,6 +16,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ErrorHandlerService } from '@services/error-handler.service';
 import { NotificationService } from '@services/notifications.service';
 import { PreferencesComponent } from './components/preferences/preferences.component';
+import { CanActivateRoute } from '@shared/canActivate.route';
 
 const routes: Routes = [
   {
@@ -37,7 +38,8 @@ const routes: Routes = [
   // },
   {
     path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+    canActivate: [CanActivateRoute]
   }
 ];
 
@@ -60,6 +62,7 @@ const routes: Routes = [
     Keyboard,
     ErrorHandlerService,
     NotificationService,
+    CanActivateRoute
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
