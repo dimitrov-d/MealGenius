@@ -57,8 +57,17 @@ router.get('/meals', async (req, res) => {
     });
 });
 
+router.post('/currentUser', async (req, res) => {
+    const { email } = req.body;
+    const collection = db.collection('users');
+    const user = await collection.findOne({ email });
+    if (user == null) {
+        return res.status(400).send({ 'error': "Cannot get current user" });
+    }
+    return res.status(200).send(user);
+})
 
-router.post('/update', async (req, res) => {
+router.post('/updateUser', async (req, res) => {
     const { email } = req.body;
     const newDiet = req.body.diet;
     const newAllergens = req.body.allergens;
@@ -68,7 +77,7 @@ router.post('/update', async (req, res) => {
 
         const updateDoc = {
             $set: {
-                diets: newDiet,
+                diet: newDiet,
                 allergens: newAllergens
             },
         };

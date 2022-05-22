@@ -9,7 +9,7 @@ import { ErrorHandlerService } from '@services/error-handler.service';
   templateUrl: './preferences.component.html',
   styleUrls: ['./preferences.component.css']
 })
-export class PreferencesComponent implements OnInit {
+export class PreferencesComponent {
 
   diets: any[];
   allergens: any[];
@@ -18,7 +18,7 @@ export class PreferencesComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router,
     private notifications: NotificationService, private errorHandler: ErrorHandlerService) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.user = currentUser;
     this.http.get('http://localhost:3000/diets').subscribe((diets: any[]) => {
@@ -33,6 +33,8 @@ export class PreferencesComponent implements OnInit {
         }
       });
     });
+    this.http.post('http://localhost:3000/currentUser', { email: currentUser.email })
+      .subscribe((user: any) => this.user = user);
   }
 
   selectDiet(idx) {
@@ -46,11 +48,15 @@ export class PreferencesComponent implements OnInit {
   }
 
   savePreferences() {
-    this.errorHandler.addErrorHandler(this.http.post('http://localhost:3000/update', { ...this.user }))
-      .subscribe(() => {
-        this.router.navigate(['/tabs/plan']);
-        this.notifications.showToast('Preferences saved successfully.');
-        localStorage.setItem('currentUser', JSON.stringify({ ...this.user, allergens: this.allergens, diet: this.diets.find(d => d.selected) }));
-      });
+    const userObj = {
+      ...this.user,
+      diet: this.diets.find(x => x.selected),
+      allergens: this.allergens.filter(x => x.selected)
+    };
+    this.errorHandler.addErrorHandler(this.http.post('http://localhost:3000/updateUser', userObj)).subscribe(() => {
+      this.router.navigate(['/tabs/plan'], { replaceUrl: true });
+      this.notifications.showToast('Preferences saved successfully.');
+      localStorage.setItem('currentUser', JSON.stringify(userObj));
+    });
   }
 }
