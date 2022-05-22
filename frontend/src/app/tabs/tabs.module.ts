@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { TabsPage } from './tabs.component';
 import { PlanComponent } from '@shared/components/plan/plan.component';
 import { PreferencesComponent } from '../components/preferences/preferences.component';
+import { MealViewComponent } from '../components/meal-view/meal-view.component';
 
 const routes: Routes = [
   {
@@ -26,17 +27,16 @@ const routes: Routes = [
         component: MealsComponent
       },
       {
+        path: 'meal/:id',
+        component: MealViewComponent
+      },
+      {
         path: '',
         redirectTo: '/tabs/plan',
         pathMatch: 'full'
       }
     ]
   },
-  {
-    path: '',
-    redirectTo: '/tabs/tab1',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({
