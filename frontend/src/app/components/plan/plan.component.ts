@@ -1,5 +1,5 @@
-import { UserService } from './../../services/user.service';
-import { Meal } from './../../shared/models/Meal';
+import { UserService } from '@services/user.service';
+import { Meal } from '@shared/models/Meal';
 import { DataService } from '@services/data.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
@@ -25,7 +25,6 @@ export class PlanComponent {
   ionViewWillEnter() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     this.getMeals();
-    console.log(this.userService.getCurrentUser());
   }
 
   getMeals() {

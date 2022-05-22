@@ -1,4 +1,4 @@
-import { Meal } from './../shared/models/Meal';
+import { Meal } from '@shared/models/Meal';
 import { ErrorHandlerService } from '@services/error-handler.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';

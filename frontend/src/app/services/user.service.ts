@@ -115,7 +115,7 @@ export class UserService {
                 return false;
             }
 
-            return new Date(payload.time * 1000) > new Date();
+            return new Date(payload.expiryDate) > new Date();
         } catch (ex) {
             console.error(ex);
             return false;

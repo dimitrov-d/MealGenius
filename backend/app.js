@@ -18,6 +18,6 @@ app.use(authRouter);
 app.use(mealsRouter);
 app.use(userRouter);
 
-app.listen(3000, () => console.log('Hackathon app listening on port 3000'));
+app.listen(3000, () => console.info('Hackathon app listening on port 3000'));
 
 module.exports = { app };
