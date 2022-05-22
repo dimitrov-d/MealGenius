@@ -1,19 +1,23 @@
-const express = require('express')
+const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { router } = require('./routes');
-
+const authRouter = require('./routes/auth');
+const mealsRouter = require('./routes/meals');
+const userRouter = require('./routes/user');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 app.use(cors({
-    origin: '*',
+    origin: '*', // TODO: conditional based on environment
     methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
 }));
-app.use(router);
 
+app.use(authRouter);
+app.use(mealsRouter);
+app.use(userRouter);
 
-app.listen(3000, () => console.log("Hackathon app listening on port 3000"));
+app.listen(3000, () => console.log('Hackathon app listening on port 3000'));
 
 module.exports = { app };

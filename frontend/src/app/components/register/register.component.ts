@@ -32,15 +32,15 @@ export class RegisterComponent implements OnInit {
       password: [null, [Validators.required, Validators.minLength(6)]],
     });
     setTimeout(() => {
-      this.http.get('http://localhost:3000/diets').subscribe((diets: any[]) => this.diets = diets);
-      this.http.get('http://localhost:3000/allergens').subscribe((allergens: any[]) => this.allergens = allergens);
+      this.http.get('http://localhost:3000/meals/diets').subscribe((diets: any[]) => this.diets = diets);
+      this.http.get('http://localhost:3000/meals/allergens').subscribe((allergens: any[]) => this.allergens = allergens);
       this.slides.lockSwipes(true);
     });
   }
 
   async register() {
     this.errorHandler.addErrorHandler(
-      this.http.post('http://localhost:3000/register', {
+      this.http.post('http://localhost:3000/auth/register', {
         ...this.credentials.value
       }))
       .subscribe(() => {

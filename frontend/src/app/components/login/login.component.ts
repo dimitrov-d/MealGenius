@@ -33,7 +33,7 @@ export class LoginComponent {
 
   async login() {
     this.errorHandler.addErrorHandler(
-      this.http.post('http://localhost:3000/login', { ...this.credentials.value }))
+      this.http.post('http://localhost:3000/auth/login', { ...this.credentials.value }))
       .subscribe(({user}) => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.notifications.showToast('Login successful.');

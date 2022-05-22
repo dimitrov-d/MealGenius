@@ -7,7 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { PlanComponent } from './shared/components/plan/plan.component';
+import { PlanComponent } from './components/plan/plan.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
@@ -51,7 +51,7 @@ const routes: Routes = [
     HttpClientModule,
     IonicStorageModule.forRoot(),
   ],
-  declarations: [AppComponent, LoginComponent, RegisterComponent, PreferencesComponent, MealsComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, PreferencesComponent, PlanComponent, MealsComponent],
   entryComponents: [],
   providers: [
     StatusBar,

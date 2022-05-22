@@ -6,10 +6,10 @@ build_develop:
   only:
     - master
   tags:
-    - lkp
+    - optimeal
     - develop
-    - actual
+    - app
   script:
     - npm ci
-    - npx ng build --configuration=develop
-    - cp -r -force www/* C:/NesifriranoBlago/Mobile
+    - ng build --configuration=production
+    - cp -r -force www/* $OUTPUT_FOLDER
