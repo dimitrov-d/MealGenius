@@ -1,3 +1,9 @@
+Hackathon application programmed in 20 consecutive hours at the FAMNIT programming hackathon (May 21 - 22 2022)
+
+Our team won :)
+
+------------------------------------------------------------------------------------------------
+
 ## Backend
 
 ### Tech stack
